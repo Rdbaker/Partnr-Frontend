@@ -1,0 +1,137 @@
+var angular = require('angular');
+require('angular-ui-router');
+require('angular-ui-bootstrap');
+require('angular-masonry');
+require('ng-tags-input');
+
+require('./skills/skillService.js');
+
+angular.module('partnr.auth', [])
+  .factory('principal', ['$rootScope', '$http', '$log', '$q', 'toaster', require('./auth/principalService.js')])
+  .factory('authorization', ['$rootScope', '$state', '$log', '$q', 'principal', require('./auth/authorizeService.js')])
+  .directive('loginForm', require('./auth/loginFormDirective.js'))
+  .controller('LoginController', ['$scope', '$log', '$state', '$q', 'principal', 'toaster', require('./auth/loginCtrl.js')]);
+
+angular.module('partnr.users', [])
+  .controller('CreateUserController', ['$scope', '$state', '$log', '$q', 'users', 'principal', 'toaster', require('./user/createUserCtrl.js')])
+  .controller('ForgotPasswordController', ['$scope', '$state', '$log', '$q', 'users', 'principal', 'toaster', require('./user/forgotPasswordCtrl.js')])
+  .controller('ResetPasswordController', ['$scope', '$state', '$stateParams', '$log', '$q', 'users', 'principal', 'toaster', require('./user/resetPasswordCtrl.js')])
+  .directive('userCard', ['$rootScope', '$state', require('./user/userCardDirective.js')])
+  .factory('users', ['$rootScope', '$http', '$log', 'principal', require('./user/userService.js')]);
+
+angular.module('partnr.messaging', [])
+  .factory('conversations', ['$rootScope', '$http', '$log', 'principal', require('./conversations/conversationService.js')])
+  .controller('ListConversationController', ['$scope', 'conversations', require('./conversations/listConversationCtrl.js')])
+  .controller('ProjectConversationController', ['$rootScope', '$scope', '$stateParams',
+    '$log', '$interval', 'toaster', 'conversations', require('./conversations/projectConversationCtrl.js')]);
+
+angular.module('partnr.notify', [])
+  .factory('toaster', ['$rootScope', require('./toaster/toasterService.js')])
+  .factory('notifications', ['$rootScope', '$http', '$log', '$q', '$timeout', 'principal', require('./notifications/notificationService.js')])
+  .directive('toaster', ['$rootScope', 'toaster', require('./toaster/toastDirective.js')])
+  .controller('ListNotificationsController', ['$scope', '$state', '$stateParams',
+    '$log', 'notifications', 'routeUtils', require('./notifications/listNotificationsCtrl.js')]);
+
+angular.module('partnr.search', [])
+  .factory('search', ['$rootScope', '$http', '$log', 'principal', require('./search/searchService.js')])
+  .controller('SearchController', ['$scope', '$state', '$stateParams', '$q', '$log', 'principal',
+    'search', 'toaster', 'applications', require('./search/searchCtrl.js')]);
+
+angular.module('partnr.users.assets', [])
+  .factory('skills', ['$rootScope', '$http', '$log', 'principal', require('./skills/skillService.js')])
+  .factory('profiles', ['$rootScope', '$http', '$log', 'principal', require('./user/profile/profileService.js')])
+  .factory('projects', ['$rootScope', '$http', '$log', 'principal', require('./projects/projectService.js')])
+  .directive('categoryButton', ['$rootScope', '$state', 'skills', require('./skills/categoryButtonDirective.js')])
+  .directive('skillCategoryEditor', ['$rootScope', '$state', '$log', 'skills', require('./skills/skillCategoryEditorDirective.js')])
+  .controller('SettingsController', ['$scope', require('./settings/settingsCtrl.js')])
+  .controller('pnConnBtn', require('./shared/connBtnDirective.js'))
+  .controller('CreateProfileController', ['$scope', '$state', '$log', '$q', 'toaster', 'profiles', 'users', require('./user/profile/createProfileCtrl.js')])
+  .controller('EditProfileController', ['$scope', '$state', '$log', '$q', '$filter', 'toaster', 'users',
+    'principal', 'profiles', '$rootScope', '$timeout', require('./user/profile/editProfileCtrl.js')])
+  .controller('ProfileController', ['$scope', '$state', '$stateParams', '$log', 'toaster', 'users', require('./user/profile/profileCtrl.js')]);
+
+angular.module('partnr.core', ['ui.router',
+  'ui.bootstrap', 'wu.masonry', 'ngTagsInput',
+  'partnr.auth', 'partnr.users', 'partnr.messaging',
+  'partnr.notify', 'partnr.search', 'partnr.users.assets',
+  'templates'
+  ])
+  .config(['$stateProvider', '$urlRouterProvider', require('./appRoutes.js')])
+  .factory('routeUtils', ['$rootScope', '$http', '$log', '$q', '$state', 'principal', require('./utils/routeUtilsService.js')])
+  .directive('pnBgImg', require('./shared/bgImgDirective.js'))
+  .controller('HomeController', ['$scope', '$state', '$q', '$log', 'principal', 'search', 'toaster', 'projects', require('./home/homeCtrl')])
+  .controller('SharedController', ['$scope', '$state', '$stateParams', '$log', '$q',
+    'notifications', 'routeUtils', 'principal', 'users', require('./shared/sharedCtrl.js')])
+  .run(['$state', '$rootScope', '$log', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
+    function ($state, $rootScope, $log, $window, $location, principal, authorization, skills, $templateCache) {
+
+   /**
+    * Set basic app-level variables and manage state changes
+    */
+
+   principal.fetchCsrf();
+   $rootScope.$state = $state; // application state
+   $rootScope.apiVersion = "v1";
+   $rootScope.apiRoute  = '/api/' + $rootScope.apiVersion + '/';
+   $rootScope.version   = '1.1.0';
+   $rootScope.pollDuration = 10000;
+   var bypassAuthCheck = false;
+
+   $rootScope.isLoggedIn = function() {
+      return principal.isAuthenticated();
+   };
+
+   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+      if (bypassAuthCheck) {
+        bypassAuthCheck = false;
+        return;
+      };
+
+      e.preventDefault();
+      $log.debug("[STATE] State change occurring: " + toState.name);
+      bypassAuthCheck = true;
+      $rootScope.toState = toState;
+      $rootScope.toParams = toParams;
+
+      authorization.authorize().then(function(authorized) {
+        if (authorized) {
+          if ($state.current.name == toState) {
+            bypassAuthCheck = false;
+          } else {
+            $state.go(toState, toParams);
+          }
+        } else {
+          if ($state.current.name == 'login') {
+            bypassAuthCheck = false;
+          } else {
+            $state.go('login');
+          }
+        }
+      });
+   });
+
+   $rootScope.$on('$stateChangeSuccess', function(event) {
+    if (!$window.ga)
+      return;
+
+    $window.ga('send', 'pageview', { page: $location.url() });
+   });
+
+   /**
+    * Load skill categories
+    */
+    $rootScope.categories = [];
+    skills.listCategories().then(function(result) {
+      if (result.data) {
+        $rootScope.categories = result.data;
+
+        for (var i = 0; i < $rootScope.categories.length; i++) {
+          $rootScope.categories[i].color_rgb = skills.hexToRgb($rootScope.categories[i].color_hex);
+        }
+
+        $log.debug(result.data);
+      }
+    });
+
+    document.getElementById('appVersion').text = $rootScope.version;
+}]);
