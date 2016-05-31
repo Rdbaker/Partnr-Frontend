@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').directive('taskTile', function($rootScope, $state, tasks) {
+module.exports = function($rootScope, $state, tasks) {
     return {
         restrict: 'AE',
         templateUrl: '/projects/taskmgr/task_tile.html',
@@ -32,4 +32,4 @@ angular.module('partnr.users.assets').directive('taskTile', function($rootScope,
             }
         }
     };
-});
+};

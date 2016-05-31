@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').directive('projectTile', function($rootScope, $state) {
+module.exports = function($rootScope, $state) {
     return {
         restrict: 'AE',
         templateUrl: '/projects/project_tile.html',
@@ -19,4 +19,4 @@ angular.module('partnr.users.assets').directive('projectTile', function($rootSco
             };
         }
     };
-});
+};

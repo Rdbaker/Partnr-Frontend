@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('ProjectWrapperController', function($scope, $state, $stateParams, $log, $q, principal, projects) {
+module.exports = function($scope, $state, $stateParams, $log, $q, principal, projects) {
 	$scope.loadComplete = false;
 	$scope.isMember = false;
 	$scope.isOwner = false;
@@ -12,8 +12,8 @@ angular.module('partnr.users.assets').controller('ProjectWrapperController', fun
 		$scope.initialize();
 	});
 
-	console.log($stateParams);
-	
+	$log.debug($stateParams);
+
 	$scope.getProject = function(project) {
 		return $scope.project;
 	};
@@ -60,24 +60,24 @@ angular.module('partnr.users.assets').controller('ProjectWrapperController', fun
 			}
 
 			$scope.loadComplete = true;
-			deferred.resolve({ 
-				project: $scope.project, 
+			deferred.resolve({
+				project: $scope.project,
 				isOwner: $scope.isOwner,
-				isMember: $scope.isMember, 
+				isMember: $scope.isMember,
 				canApply: $scope.canApply
 			});
 		});
 
 		return deferred.promise;
-	};	
+	};
 
 	$scope.getProjectWrapperInfo = function() {
 		var deferred = $q.defer();
 		if ($scope.project !== null) {
 			deferred.resolve({
-				project: $scope.project, 
+				project: $scope.project,
 				isOwner: $scope.isOwner,
-				isMember: $scope.isMember, 
+				isMember: $scope.isMember,
 				canApply: $scope.canApply
 			});
 		} else {
@@ -104,9 +104,9 @@ angular.module('partnr.users.assets').controller('ProjectWrapperController', fun
 					break;
 			}
 		}
-		
+
 		return result;
 	};
 
 	$scope.initialize();
-});
+};

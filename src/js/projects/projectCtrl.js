@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('ProjectController', function($scope, $state, $stateParams, $log, $q, projects,
+module.exports = function($scope, $state, $stateParams, $log, $q, projects,
 	applications, comments, principal, toaster) {
 	$scope.project = {};
 	$scope.newComment = {
@@ -98,4 +98,4 @@ angular.module('partnr.users.assets').controller('ProjectController', function($
 
 		doLoadStep();
 	});
-});
+};

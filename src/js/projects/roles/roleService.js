@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').factory('roles', function($rootScope, $http, $log, principal) {
+module.exports = function($rootScope, $http, $log, principal) {
 	return {
 		get : function(id) {
 			$log.debug("[PROJECT ROLE] Sending Get request");
@@ -50,4 +50,4 @@ angular.module('partnr.users.assets').factory('roles', function($rootScope, $htt
 			return (role.title.length > 0);
 		}
 	};
-});
+};

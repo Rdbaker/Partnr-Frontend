@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('EditProjectController', function($scope, $state, 
+module.exports = function($scope, $state,
 	$stateParams, $log, $q, $filter, projects, applications, roles, principal, toaster, modals, $rootScope) {
 	$scope.project = {
 		status: 'not_started'
@@ -24,8 +24,8 @@ angular.module('partnr.users.assets').controller('EditProjectController', functi
 	};
 
 	$scope.addRole = function() {
-		$scope.newRoles.push({ 
-			title: "Add a title...", 
+		$scope.newRoles.push({
+			title: "Add a title...",
 			project: $scope.project.id
 		});
 	};
@@ -36,7 +36,7 @@ angular.module('partnr.users.assets').controller('EditProjectController', functi
 
 	$scope.deleteRole = function(id) {
 		var role = $filter('filter')(
-			$scope.project.roles, 
+			$scope.project.roles,
 			function (d) {
 				return d.id === id;
 			})[0];
@@ -93,4 +93,4 @@ angular.module('partnr.users.assets').controller('EditProjectController', functi
 			$scope.loadComplete = true;
 		});
 	};
-});
+};

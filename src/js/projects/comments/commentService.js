@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').factory('comments', function($rootScope, $http, $log, principal) {
+module.exports = function($rootScope, $http, $log, principal) {
 	return {
 		get : function(id) {
 			$log.debug("[PROJECT COMMENT] Sending Get request");
@@ -50,4 +50,4 @@ angular.module('partnr.users.assets').factory('comments', function($rootScope, $
 			return (comment.content.length > 0);
 		}
 	};
-});
+};

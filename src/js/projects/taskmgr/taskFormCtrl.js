@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('TaskFormController', function($scope, $state, $stateParams, $log, $q, $timeout, tasks, milestones, skills, principal, modals, toaster) {
+module.exports = function($scope, $state, $stateParams, $log, $q, $timeout, tasks, milestones, skills, principal, modals, toaster) {
 	$scope.task = {
 		title: '',
 		description: '',
@@ -212,4 +212,4 @@ angular.module('partnr.users.assets').controller('TaskFormController', function(
 			project: $stateParams.project_id
 		};
 	};
-});
+};

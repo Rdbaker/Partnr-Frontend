@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('ListTasksController', function($scope, $state, $filter, $stateParams, $log, $q, projects, milestones, tasks, principal, toaster) {
+module.exports = function($scope, $state, $filter, $stateParams, $log, $q, projects, milestones, tasks, principal, toaster) {
 	$scope.project = {};
 	$scope.searchText = '';
 	$scope.tasks = [];
@@ -66,4 +66,4 @@ angular.module('partnr.users.assets').controller('ListTasksController', function
 			$state.go('project_task_create', { project_id : $stateParams.project_id });
 		}
 	};
-});
+};

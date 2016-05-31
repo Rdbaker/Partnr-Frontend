@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('MilestoneFormController', function($scope, $state, $stateParams, $log, $q, $timeout, milestones, principal, modals, toaster) {
+module.exports = function($scope, $state, $stateParams, $log, $q, $timeout, milestones, principal, modals, toaster) {
 	$scope.milestone = {
 		title: '',
 		due_date: '',
@@ -67,4 +67,4 @@ angular.module('partnr.users.assets').controller('MilestoneFormController', func
 		$scope.milestone.title = '';
 		$scope.milestone.due_date = '';
 	};
-});
+};

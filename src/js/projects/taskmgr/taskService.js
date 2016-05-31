@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').factory('tasks', function($rootScope, $http, $log, principal) {
+module.exports = function($rootScope, $http, $log, principal) {
 	return {
 		get : function(id) {
 			$log.debug('[TASK] Sending get request for task ' + id);
@@ -108,4 +108,4 @@ angular.module('partnr.users.assets').factory('tasks', function($rootScope, $htt
 			});
 		}
 	};
-});
+};

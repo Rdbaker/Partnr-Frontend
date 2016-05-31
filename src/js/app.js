@@ -41,14 +41,46 @@ angular.module('partnr.users.assets', [])
   .factory('skills', ['$rootScope', '$http', '$log', 'principal', require('./skills/skillService.js')])
   .factory('profiles', ['$rootScope', '$http', '$log', 'principal', require('./user/profile/profileService.js')])
   .factory('projects', ['$rootScope', '$http', '$log', 'principal', require('./projects/projectService.js')])
+  .factory('applications', ['$rootScope', '$http', '$log', 'principal', require('./projects/applications/applicationService.js')])
+  .factory('comments', ['$rootScope', '$http', '$log', 'principal', require('./projects/comments/commentService.js')])
+  .factory('roles', ['$rootScope', '$http', '$log', 'principal', require('./projects/roles/roleService.js')])
+  .factory('milestones', ['$rootScope', '$http', '$log', 'principal', require('./projects/taskmgr/milestoneService.js')])
+  .factory('tasks', ['$rootScope', '$http', '$log', 'principal', require('./projects/taskmgr/taskService.js')])
   .directive('categoryButton', ['$rootScope', '$state', 'skills', require('./skills/categoryButtonDirective.js')])
   .directive('skillCategoryEditor', ['$rootScope', '$state', '$log', 'skills', require('./skills/skillCategoryEditorDirective.js')])
+  .directive('roleCard', ['$rootScope', '$state', require('./projects/roles/roleCardDirective.js')])
+  .directive('milestoneTile', ['$rootScope', '$state', require('./projects/taskmgr/milestoneTileDirective.js')])
+  .directive('taskTile', ['$rootScope', '$state', 'tasks', require('./projects/taskmgr/taskTileDirective.js')])
+  .directive('projectTile', ['$rootScope', '$state', require('./projects/projectTileDirective.js')])
   .controller('SettingsController', ['$scope', require('./settings/settingsCtrl.js')])
   .controller('pnConnBtn', require('./shared/connBtnDirective.js'))
   .controller('CreateProfileController', ['$scope', '$state', '$log', '$q', 'toaster', 'profiles', 'users', require('./user/profile/createProfileCtrl.js')])
   .controller('EditProfileController', ['$scope', '$state', '$log', '$q', '$filter', 'toaster', 'users',
     'principal', 'profiles', '$rootScope', '$timeout', require('./user/profile/editProfileCtrl.js')])
-  .controller('ProfileController', ['$scope', '$state', '$stateParams', '$log', 'toaster', 'users', require('./user/profile/profileCtrl.js')]);
+  .controller('ProfileController', ['$scope', '$state', '$stateParams', '$log', 'toaster', 'users', require('./user/profile/profileCtrl.js')])
+  .controller('PartnersController', ['$scope', require('./partners/partnersCtrl.js')])
+  .controller('ListApplicationsController', ['$scope', '$state', '$stateParams', '$log',
+    '$q', 'projects', 'applications', 'principal', 'toaster', require('./projects/applications/listApplicationsCtrl.js')])
+  .controller('ListTasksController', ['$scope', '$state', '$filter', '$stateParams', '$log',
+    '$q', 'projects', 'milestones', 'tasks', 'principal', 'toaster', require('./projects/taskmgr/ListTasksCtrl.js')])
+  .controller('MilestoneController', ['$scope', '$state', '$filter', '$stateParams', '$log',
+    '$q', 'projects', 'milestones', 'tasks', 'principal', 'toaster', require('./projects/taskmgr/milestoneCtrl.js')])
+  .controller('MilestoneFormController', ['$scope', '$state', '$stateParams', '$log', '$q',
+    '$timeout', 'milestones', 'principal', 'modals', 'toaster', require('./projects/taskmgr/milestoneCtrl.js')])
+  .controller('TaskFormController', ['$scope', '$state', '$stateParams', '$log', '$q',
+    '$timeout', 'tasks', 'milestones', 'skills', 'principal', 'modals', 'toaster', require('./projects/taskmgr/milestoneCtrl.js')])
+  .controller('CreateProjectController', ['$scope', '$state', '$log', '$q',
+    '$timeout', 'projects', 'roles', 'principal', 'toaster', require('./projects/createProjectCtrl.js')])
+  .controller('EditProjectController', ['$scope', '$state', '$stateParams', '$log', '$q',
+    '$filter', 'projects', 'applications', 'roles', 'principal', 'toaster', 'modals', '$rootScope', require('./projects/createProjectCtrl.js')])
+  .controller('ListProjectController', ['$scope', '$state', '$log', '$q', 'projects', 'principal', 'toaster', require('./projects/listProjectCtrl.js')])
+  .controller('ProjectController', ['$scope', '$state', '$stateParams', '$log', '$q', 'projects',
+    'applications', 'comments', 'principal', 'toaster', require('./projects/listProjectCtrl.js')])
+  .controller('ProjectWrapperController', ['$scope', '$state', '$stateParams', '$log',
+    '$q', 'principal', 'projects', require('./projects/projectWrapperCtrl.js')])
+  .controller('UserListProjectController', ['$scope', '$state', '$log',
+    '$q', 'projects', 'principal', 'toaster', require('./projects/userListProjectCtrl.js')])
+  .controller('ProfileController', ['$scope', '$state', '$stateParams', '$log', '$q', 'toaster', 'users', require('./user/profile/profileCtrl.js')]);
 
 angular.module('partnr.core', ['ui.router',
   'ui.bootstrap', 'wu.masonry', 'ngTagsInput',

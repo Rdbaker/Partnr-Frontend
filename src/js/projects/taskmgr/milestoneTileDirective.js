@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').directive('milestoneTile', function($rootScope, $state) {
+module.exports = function($rootScope, $state) {
     return {
         restrict: 'AE',
         templateUrl: '/projects/taskmgr/milestone_tile.html',
@@ -9,4 +9,4 @@ angular.module('partnr.users.assets').directive('milestoneTile', function($rootS
             $scope.$state = $state;
         }
     };
-});
+};

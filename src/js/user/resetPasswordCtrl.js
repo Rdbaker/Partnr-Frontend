@@ -1,4 +1,4 @@
-module.exrpots = function($scope, $state, $stateParams, $log, $q, users, principal, toaster) {
+module.exports = function($scope, $state, $stateParams, $log, $q, users, principal, toaster) {
 	$scope.token = $stateParams.reset_password_token;
 	$scope.password = "";
 	$scope.confirmPassword = "";

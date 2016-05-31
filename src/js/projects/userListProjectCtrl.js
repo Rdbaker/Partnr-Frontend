@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('UserListProjectController', function($scope, $state, $log, $q, projects, principal, toaster) {
+module.exports = function($scope, $state, $log, $q, projects, principal, toaster) {
 	$scope.projects = [];
 	$scope.loadComplete = false;
 
@@ -6,4 +6,4 @@ angular.module('partnr.users.assets').controller('UserListProjectController', fu
 		$scope.projects = result.data;
 		$scope.loadComplete = true;
 	});
-});
+};

@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').factory('applications', function($rootScope, $http, $log, principal) {
+module.exports = function($rootScope, $http, $log, principal) {
 	return {
 		list : function(filters) {
 			$log.debug("[APPLICATION] Sending get request");
@@ -50,4 +50,4 @@ angular.module('partnr.users.assets').factory('applications', function($rootScop
 			});
 		}
 	};
-});
+};

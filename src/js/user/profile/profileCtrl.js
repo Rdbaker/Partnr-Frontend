@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('ProfileController', function($scope, $state, $stateParams, $log, toaster, users) {
+module.exports = function($scope, $state, $stateParams, $log, toaster, users) {
 	$scope.loadComplete = false;
 	$scope.user = null;
 
@@ -7,4 +7,4 @@ angular.module('partnr.users.assets').controller('ProfileController', function($
 		$scope.user = result.data;
 		$scope.loadComplete = true;
 	});
-});
+};

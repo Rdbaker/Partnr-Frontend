@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').directive('roleCard', function($rootScope, $state) {
+module.exports = function($rootScope, $state) {
     return {
         restrict: 'AE',
         templateUrl: '/projects/roles/role_card.html',
@@ -9,4 +9,4 @@ angular.module('partnr.users.assets').directive('roleCard', function($rootScope,
             $scope.$state = $state;
         }
     };
-});
+};

@@ -1,4 +1,4 @@
-angular.module('partnr.users.assets').controller('CreateProjectController', function($scope, $state, $log, $q, $timeout, projects, roles, principal, toaster) {
+module.exports = function($scope, $state, $log, $q, $timeout, projects, roles, principal, toaster) {
 	$scope.step = 1;
 	$scope.coverPhoto = null;
 	$scope.project = {
@@ -164,4 +164,4 @@ angular.module('partnr.users.assets').controller('CreateProjectController', func
 
 		return deferred.promise;
 	};
-});
+};

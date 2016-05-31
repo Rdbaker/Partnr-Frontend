@@ -1,3 +1,1 @@
-angular.module('partnr.users.assets').controller('PartnersController', function($scope) {
-	
-});
+module.exports = function($scope) {};
