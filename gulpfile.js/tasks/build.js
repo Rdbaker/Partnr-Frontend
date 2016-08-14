@@ -23,12 +23,22 @@ gulp.task('build', ['sass', 'rename'], function() {
     module: 'templates'
   }));
 
-  return b.bundle()
-    .pipe(source(config.destName))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: config.debug}))
-    .pipe(uglify())
-    .on('error', gutil.log)
-    .pipe(sourcemaps.write(config.src))
-    .pipe(gulp.dest(config.dest));
+  if(config.debug) {
+    return b.bundle()
+      .pipe(source(config.destName))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      .on('error', gutil.log)
+      .pipe(sourcemaps.write(config.src))
+      .pipe(gulp.dest(config.dest));
+  } else {
+    return b.bundle()
+          .pipe(source(config.destName))
+          .pipe(buffer())
+          .pipe(sourcemaps.init({loadMaps: false}))
+          .pipe(uglify())
+          .on('error', gutil.log)
+          .pipe(sourcemaps.write(config.src))
+          .pipe(gulp.dest(config.dest));
+  }
 });

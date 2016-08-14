@@ -1,7 +1,17 @@
+require('jquery');
+require('jquery-bridget');
+require('ev-emitter');
+require('matches-selector');
+require('fizzy-ui-utils');
+require('get-size');
+require('outlayer/item');
+require('outlayer');
+require('masonry-layout');
+require('imagesloaded');
 var angular = require('angular');
+require('angular-masonry');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
-require('angular-masonry');
 require('ng-tags-input');
 
 require('./skills/skillService.js');
@@ -101,69 +111,83 @@ angular.module('partnr.core', ['ui.router',
     * Set basic app-level variables and manage state changes
     */
 
-   principal.fetchCsrf();
-   $rootScope.$state = $state; // application state
-   $rootScope.apiVersion = "v1";
-   $rootScope.apiRoute  = '/api/' + $rootScope.apiVersion + '/';
-   $rootScope.version   = '1.1.0';
-   $rootScope.pollDuration = 10000;
-   var bypassAuthCheck = false;
+  var apiHostElt = document.getElementById('api-endpoints');
+  var apiHost = '';
+  document.domain = 'partnr-up.com';
+  if (window.location.host === 'app.partnr-up.com' || window.location.host === 'test.partnr-up.com') {
+    apiHost = apiHostElt.getAttribute('prd');
+  } else if (window.location.host === 'dev.partnr-up.com') {
+    apiHost = apiHostElt.getAttribute('dev');
+  } else {
+    apiHost = apiHostElt.getAttribute('lcl');
+  }
 
-   $rootScope.isLoggedIn = function() {
-      return principal.isAuthenticated();
-   };
+  principal.fetchCsrf();
+  $rootScope.$state = $state; // application state
+  $rootScope.apiVersion = "v1";
+  $rootScope.apiRoute  = apiHost + '/api/' + $rootScope.apiVersion + '/';
+  $rootScope.version   = '1.1.0';
+  $rootScope.pollDuration = 10000;
+  var bypassAuthCheck = false;
 
-   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-      if (bypassAuthCheck) {
-        bypassAuthCheck = false;
-        return;
-      };
+  console.log($rootScope.apiRoute);
+  console.log(apiHost);
 
-      e.preventDefault();
-      $log.debug("[STATE] State change occurring: " + toState.name);
-      bypassAuthCheck = true;
-      $rootScope.toState = toState;
-      $rootScope.toParams = toParams;
+  $rootScope.isLoggedIn = function() {
+    return principal.isAuthenticated();
+  };
 
-      authorization.authorize().then(function(authorized) {
-        if (authorized) {
-          if ($state.current.name == toState) {
-            bypassAuthCheck = false;
-          } else {
-            $state.go(toState, toParams);
-          }
+  $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    if (bypassAuthCheck) {
+      bypassAuthCheck = false;
+      return;
+    };
+
+    e.preventDefault();
+    $log.debug("[STATE] State change occurring: " + toState.name);
+    bypassAuthCheck = true;
+    $rootScope.toState = toState;
+    $rootScope.toParams = toParams;
+
+    authorization.authorize().then(function(authorized) {
+      if (authorized) {
+        if ($state.current.name == toState) {
+          bypassAuthCheck = false;
         } else {
-          if ($state.current.name == 'login') {
-            bypassAuthCheck = false;
-          } else {
-            $state.go('login');
-          }
+          $state.go(toState, toParams);
         }
-      });
-   });
+      } else {
+        if ($state.current.name == 'login') {
+          bypassAuthCheck = false;
+        } else {
+          $state.go('login');
+        }
+      }
+    });
+  });
 
-   $rootScope.$on('$stateChangeSuccess', function(event) {
+  $rootScope.$on('$stateChangeSuccess', function(event) {
     if (!$window.ga)
       return;
 
     $window.ga('send', 'pageview', { page: $location.url() });
-   });
+  });
 
-   /**
-    * Load skill categories
-    */
-    $rootScope.categories = [];
-    skills.listCategories().then(function(result) {
-      if (result.data) {
-        $rootScope.categories = result.data;
+  /**
+  * Load skill categories
+  */
+  $rootScope.categories = [];
+  skills.listCategories().then(function(result) {
+    if (result.data) {
+      $rootScope.categories = result.data;
 
-        for (var i = 0; i < $rootScope.categories.length; i++) {
-          $rootScope.categories[i].color_rgb = skills.hexToRgb($rootScope.categories[i].color_hex);
-        }
-
-        $log.debug(result.data);
+      for (var i = 0; i < $rootScope.categories.length; i++) {
+        $rootScope.categories[i].color_rgb = skills.hexToRgb($rootScope.categories[i].color_hex);
       }
-    });
 
-    document.getElementById('appVersion').text = $rootScope.version;
+      $log.debug(result.data);
+    }
+  });
+
+  document.getElementById('appVersion').text = $rootScope.version;
 }]);

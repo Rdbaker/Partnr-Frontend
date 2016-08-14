@@ -36,7 +36,8 @@ module.exports = {
     server: {
       index: './index.html',
       baseDir: './dest'
-    }
+    },
+    open: 'external'
   },
 
   rename: {
