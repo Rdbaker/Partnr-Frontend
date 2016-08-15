@@ -104,8 +104,8 @@ angular.module('partnr.core', ['ui.router',
   .controller('HomeController', ['$scope', '$state', '$q', '$log', 'principal', 'search', 'toaster', 'projects', require('./home/homeCtrl')])
   .controller('SharedController', ['$scope', '$state', '$stateParams', '$log', '$q',
     'notifications', 'routeUtils', 'principal', 'users', require('./shared/sharedCtrl.js')])
-  .run(['$state', '$rootScope', '$log', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
-    function ($state, $rootScope, $log, $window, $location, principal, authorization, skills, $templateCache) {
+  .run(['$state', '$rootScope', '$compileProvider', '$logProvider', '$log', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
+    function ($state, $rootScope, $compileProvider, $logProvider, $log, $window, $location, principal, authorization, skills, $templateCache) {
 
    /**
     * Set basic app-level variables and manage state changes
@@ -114,8 +114,10 @@ angular.module('partnr.core', ['ui.router',
   var apiHostElt = document.getElementById('api-endpoints');
   var apiHost = '';
   document.domain = 'partnr-up.com';
-  if (window.location.host === 'app.partnr-up.com' || window.location.host === 'test.partnr-up.com') {
+  if (window.location.host === 'app.partnr-up.com') {
     apiHost = apiHostElt.getAttribute('prd');
+    $logProvider.debugEnabled(false);
+    $compileProvider.debugInfoEnabled(false);
   } else if (window.location.host === 'dev.partnr-up.com') {
     apiHost = apiHostElt.getAttribute('dev');
   } else {
