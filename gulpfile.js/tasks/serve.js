@@ -5,7 +5,7 @@ var url = require('url');
 var config = require('../config.js');
 
 gulp.task('serve', function() {
-  var proxyOptions = url.parse('http://lcl.partnr-up.com:3000/api');
+  var proxyOptions = url.parse('http://dev-api.partnr-up.com/api');
   proxyOptions.route = '/api';
   config.browsersync.server.middleware = [proxy(proxyOptions)]
 
