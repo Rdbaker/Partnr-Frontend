@@ -1,4 +1,4 @@
-angular.module('partnr.notify').controller('SelectCategoriesModalController', function($scope, $uibModalInstance, $filter, $log, selectedCategories) {
+module.exports = function($scope, $uibModalInstance, $filter, $log, selectedCategories) {
     $scope.max = 3;
     $scope.selected = [];
 
@@ -41,5 +41,4 @@ angular.module('partnr.notify').controller('SelectCategoriesModalController', fu
     $scope.cancel = function() {
         $uibModalInstance.close(false);
     };
-});
-
+};

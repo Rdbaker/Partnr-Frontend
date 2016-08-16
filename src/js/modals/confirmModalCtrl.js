@@ -1,7 +1,7 @@
-angular.module('partnr.notify').controller('ConfirmModalController', function($scope, $sce, $uibModalInstance, message) {
+module.exports = function($scope, $sce, $uibModalInstance, message) {
     $scope.message = $sce.trustAsHtml(message);
-    
-    $scope.yes = function () {
+
+    $scope.yes = function() {
         $uibModalInstance.close(true);
     };
 
@@ -12,4 +12,4 @@ angular.module('partnr.notify').controller('ConfirmModalController', function($s
     $scope.cancel = function() {
         $uibModalInstance.close(false);
     };
-});
+};

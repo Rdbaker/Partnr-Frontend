@@ -3,7 +3,7 @@ module.exports = function() {
 
   return {
     restrict: 'E',
-    templateUrl: '/auth/login_form.html',
+    templateUrl: 'auth/login_form.html',
     link: function(scope, elem) {
       elem.on('keydown', function(e) {
         if (e.keyCode === ENTER_KEY) {
@@ -11,5 +11,5 @@ module.exports = function() {
         }
       });
     }
-  }
+  };
 };

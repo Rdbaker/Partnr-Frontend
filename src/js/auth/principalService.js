@@ -1,9 +1,9 @@
 module.exports = function($rootScope, $http, $log, $q, toaster) {
 	var identityPrechecked = false;
 
-	var user          = undefined;
+	var user;
 	var authenticated = false;
-	var csrfToken     = undefined;
+	var csrfToken;
 
 	function fetchCsrf() {
 		$log.debug("[AUTH] Requesting CSRF from server");
@@ -25,17 +25,17 @@ module.exports = function($rootScope, $http, $log, $q, toaster) {
 		});
 
 		return deferred.promise;
-	};
+	}
 
 	function setCsrf(csrf) {
 		csrfToken = csrf;
-	};
+	}
 
 	function getHeaders() {
 		return {
 			'Content-Type' : 'application/json'
 		};
-	};
+	}
 
 	function getHeadersWithCsrf() {
 		var deferred = $q.defer();
@@ -44,7 +44,7 @@ module.exports = function($rootScope, $http, $log, $q, toaster) {
 			'Content-Type' : 'application/json',
 			'X-CSRF-Token' : csrfToken
 		};
-	};
+	}
 
 	function authenticate(dataUser) {
 		/* Set all user data */
@@ -61,7 +61,7 @@ module.exports = function($rootScope, $http, $log, $q, toaster) {
 		$rootScope.$broadcast('auth', {
 	      status: 'login_success'
 	    });
-	};
+	}
 
 	return {
 		fetchCsrf : fetchCsrf,
@@ -93,7 +93,7 @@ module.exports = function($rootScope, $http, $log, $q, toaster) {
 				.error(function(data, status, headers, config) {
 					$log.error('[AUTH] Request to server failed');
 					deferred.resolve();
-				})
+				});
 			} else {
 				deferred.resolve();
 			}
@@ -135,13 +135,13 @@ module.exports = function($rootScope, $http, $log, $q, toaster) {
 						authenticate(newUser);
 						deferred.resolve(true);
 					} else {
-						$log.error('[AUTH] Log in failure')
+						$log.error('[AUTH] Log in failure');
 						toaster.error("Invalid email/password");
 						deferred.resolve(false);
 					}
 				})
 				.error(function(data, status, headers, config) {
-		            $log.error('[AUTH] Log in failure')
+		            $log.error('[AUTH] Log in failure');
 		            toaster.error("Invalid email/password");
 		            deferred.resolve(false);
 				});
@@ -193,6 +193,11 @@ module.exports = function($rootScope, $http, $log, $q, toaster) {
 
 		getUser : function() {
 			return user;
+		},
+		updateUserName : function(firstName, lastName) {
+			console.log("Updatin userzz", firstName, lastName);
+			user.first_name = firstName;
+			user.last_name = lastName;
 		},
 
 		hasRole : function(role) {

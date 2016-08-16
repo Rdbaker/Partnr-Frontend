@@ -1,7 +1,7 @@
 module.exports = function($rootScope, $state, skills) {
     return {
         restrict: 'AE',
-        templateUrl: '/skills/category_button.html',
+        templateUrl: 'skills/category_button.html',
         scope: {
             category: '=',
             selectable: '=?',
@@ -13,12 +13,12 @@ module.exports = function($rootScope, $state, skills) {
                 $scope.$emit('category::button::click', {
                     category: $scope.category
                 });
-            }
+            };
 
             $scope.buttonBackground = function() {
-            	var rgb = skills.hexToRgb($scope.category.color_hex);
-            	return "rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", 0.6)";
-            }
+                var rgb = skills.hexToRgb($scope.category.color_hex);
+                return "rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", 0.6)";
+            };
         }
     };
 };

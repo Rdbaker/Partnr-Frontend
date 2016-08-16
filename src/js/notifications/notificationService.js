@@ -37,7 +37,7 @@ module.exports = function($rootScope, $http, $log, $q, $timeout, principal) {
 
 	var enablePolling = function() {
 		$log.debug("[NOTIFICATIONS] polling enabled");
-		//polling = true;
+		polling = true;
 	};
 
 	var disablePolling = function() {
@@ -66,7 +66,7 @@ module.exports = function($rootScope, $http, $log, $q, $timeout, principal) {
 					var pattern = new RegExp("^(\\w+)_(\\w+)$");
 					var matches = pattern.exec(key);
 
-					if (matches != null) {
+					if (matches !== null) {
 						var dependencyName = matches[1];
 						var dependencyAttr = matches[2];
 
@@ -79,10 +79,10 @@ module.exports = function($rootScope, $http, $log, $q, $timeout, principal) {
 					var pattern = new RegExp("^(\\w+)_?");
 					var matches = pattern.exec(route.name);
 
-					if (matches != null) {
+					if (matches !== null) {
 						var parentEntity = matches[1];
 
-						if (notification.notifier[parentEntity] != undefined) {
+						if (notification.notifier[parentEntity] !== undefined) {
 							route.params[key] = notification.notifier[parentEntity][key];
 						} else {
 							$log.debug("[NOTIFICATIONS] Cannot find necessary value for entity: " + parentEntity);

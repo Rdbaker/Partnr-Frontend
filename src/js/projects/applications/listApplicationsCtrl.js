@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $stateParams, $log, $q, projects, applications, principal, toaster) {
+module.exports = function($scope, $rootScope, $state, $stateParams, $log, $q, projects, applications, principal, toaster) {
 	$scope.project = {};
 	$scope.applications = [];
 	$scope.isOwner = false;
@@ -21,12 +21,14 @@ module.exports = function($scope, $state, $stateParams, $log, $q, projects, appl
 	$scope.doAccept = function(application) {
 		applications.accept(application.id);
 		toaster.success("Application Accepted!");
+    mixpanel.track($scope.$root.env + ':project.application.accept');
 		$scope.doReload();
 	};
 
 	$scope.doReject = function(application) {
 		applications.reject(application.id);
 		toaster.success("Application Rejected.");
+    mixpanel.track($scope.$root.env + ':project.application.reject');
 		$scope.doReload();
 	};
 

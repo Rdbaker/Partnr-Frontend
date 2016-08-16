@@ -2,7 +2,7 @@
 	<div class="ptile-img-placeholder" pn-bg-img="{{ project.links.cover_photo }}">
 		<div class="ptile-partnrs-wrapper">
 			<div class="ptile-partnrs">
-				<a href ui-sref="profile({ id: role.user.id })" ng-show="!!role.user" uib-tooltip="{{ role.user.name }}" class="ptile-img-partnr" ng-repeat="role in project.roles | limitTo:5">
+				<a href ui-sref="user({ id: role.user.id })" ng-show="!!role.user" uib-tooltip="{{ role.user.name }}" class="ptile-img-partnr" ng-repeat="role in project.roles | limitTo:5">
 					<img ng-style="{'background-image': 'url({{role.user.links.avatar}})'}"/>
 				</a>
 			</div>
@@ -18,10 +18,7 @@
 		</h5>
 		<p>{{ project.description | limitLength:255 }}</p>
 		<div class="clearfix">
-			<div class="col-xs-4">
-				<a ui-sref="project({ project_id: project.id })" class="ptile-detail-nugget"><i class="fa fa-comment"></i><span>{{ project.comments.length }}</span></a>
-			</div>
-			<div class="col-xs-8 buttons-right">
+			<div class="col-xs-12 buttons-right">
 				<button class="btn btn-primary" ng-click="$state.go('project', { project_id: project.id })">check it out</button>
 			</div>
 		</div>

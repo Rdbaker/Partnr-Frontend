@@ -1,7 +1,7 @@
 module.exports = function($rootScope, $state, tasks) {
     return {
         restrict: 'AE',
-        templateUrl: '/projects/taskmgr/task_tile.html',
+        templateUrl: 'projects/taskmgr/task_tile.html',
         scope: {
             task: '=',
             mref: '='
@@ -13,7 +13,7 @@ module.exports = function($rootScope, $state, tasks) {
                 if ($scope.task.status != 'complete') {
                     $scope.task.status = 'complete';
                     tasks.update($scope.task).then(function(result) {
-                        if (! result.data.id) {
+                        if (!result.data.id) {
                             $scope.task.status = 'not_started';
                         } else {
                             $rootScope.$broadcast('taskUpdate', $scope.task);
@@ -22,14 +22,14 @@ module.exports = function($rootScope, $state, tasks) {
                 } else {
                     $scope.task.status = 'not_started';
                     tasks.update($scope.task).then(function(result) {
-                        if (! result.data.id) {
+                        if (!result.data.id) {
                             $scope.task.status = 'complete';
                         } else {
                             $rootScope.$broadcast('taskUpdate', $scope.task);
                         }
                     });
                 }
-            }
+            };
         }
     };
 };

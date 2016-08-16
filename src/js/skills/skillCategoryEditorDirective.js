@@ -1,7 +1,7 @@
-angular.module('partnr.users.assets').directive('skillCategoryEditor', function($rootScope, $state, $log, skills) {
+module.exports = function($rootScope, $state, $log, skills) {
     return {
         restrict: 'AE',
-        templateUrl: '/skills/skill_category_editor.html',
+        templateUrl: 'skills/skill_category_editor.html',
         scope: {
             categories: '=',
             skills: '='
@@ -17,12 +17,11 @@ angular.module('partnr.users.assets').directive('skillCategoryEditor', function(
                     for (var idx = 0; idx < $scope.skills.length; idx++) {
                         $scope.skills[idx].text = $scope.skills[idx].title;
 
-                        if ($scope.skills[idx].category
-                            && $scope.skills[idx].category.id) {
+                        if ($scope.skills[idx].category && $scope.skills[idx].category.id) {
                             if ($scope.skillCategoryMap[$scope.skills[idx].category.id]) {
                                 $scope.skillCategoryMap[$scope.skills[idx].category.id].push($scope.skills[idx]);
                             } else {
-                                $scope.skillCategoryMap[$scope.skills[idx].category.id] = [ $scope.skills[idx] ];
+                                $scope.skillCategoryMap[$scope.skills[idx].category.id] = [$scope.skills[idx]];
                             }
                         }
                     }
@@ -37,4 +36,4 @@ angular.module('partnr.users.assets').directive('skillCategoryEditor', function(
             }, true);
         }
     };
-});
+};

@@ -5,11 +5,11 @@
 		<h1 class="text-center impact-title" ng-hide="user">Discover something new.</h1>
 		<div class="impact-group">
 			<div class="impact-container text-center col-md-5 col-xs-5">
-				<h2>Join something.</h2>
+				<h2>Find something.</h2>
         <div class="input-group">
-            <input type="text" class="form-control" ng-model="searchQuery" placeholder="search for a project or role" ng-keypress="processInput($event)">
+            <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search for a project, role or user" ng-keypress="processInput($event)">
             <span class="input-group-btn">
-                <button type="button" class="pn-btn-primary" ng-click="doSearch()"><i class="fa fa-search"></i></button>
+                <button type="button" class="btn btn-primary" ng-click="doSearch()"><i class="fa fa-search"></i></button>
             </span>
         </div>
 			</div>
@@ -18,37 +18,11 @@
 			</div>
 			<div class="impact-container text-center col-md-5 col-xs-5">
 				<h2>Start something.</h2>
-				<button class="btn-lg pn-btn-primary" ng-click="$state.go('project_create')">Create Project</button>
+				<button class="btn-lg btn-primary" ng-click="$state.go('project_create')">Create Project</button>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="content-container" ng-show="search.queried">
-	<div class="results">
-		<div ng-show="search.result.projects.length > 0">
-			<h4>Projects</h4>
-			<span ng-repeat="p in search.result.projects">
-				<a ui-sref="project({ id: p.id })">{{ p.title }}</a>
-			</span>
-		</div>
-		<div ng-show="search.result.roles.length > 0">
-			<h4>Roles</h4>
-			<span ng-repeat="r in search.result.roles">
-				<a ui-sref="project({ id: r.project.id })">{{ r.title }}</a>
-			</span>
-		</div>
-		<div ng-show="search.result.roles.length === 0 && search.result.projects.length === 0">
-			No Results
-		</div>
-	</div>
-</div>
-<div masonry ng-show="loadComplete">
-	<div ng-repeat="p in projects" class="masonry-brick col-md-4">
-		<project-tile project="p"></project-tile>
-	</div>
-</div>
-<div class="loading-wrapper" ng-hide="loadComplete">
-	<div class="text-center loading-container">
-		<img src="/assets/ajax-loader.gif">
-	</div>
-</div>
+<div ui-view="feed"></div>
+<div ui-view="landing"></div>
+

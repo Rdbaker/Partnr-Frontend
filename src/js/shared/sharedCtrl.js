@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $stateParams, $log, $q, notifications, routeUtils, principal, users) {
+module.exports = function($rootScope, $scope, $state, $stateParams, $log, $q, notifications, routeUtils, principal, users) {
     $scope.newNotifications = {};
     $scope.allNotifications = {};
 
@@ -14,19 +14,20 @@ module.exports = function($scope, $state, $stateParams, $log, $q, notifications,
 
     $scope.getUserAvatar = function() {
         $log.debug("Getting user avatar");
-        users.getUserInfo().then(function(response){
-            $scope.avatarURL = "url("+response.data.links.avatar+")";
+        users.getUserInfo().then(function(response) {
+            $scope.avatarURL = "url(" + response.data.links.avatar + ")";
         });
     };
 
     $scope.doLogout = function() {
         principal.logout().then(function() {
+            mixpanel.track($scope.$root.env + ':logout');
             $state.go('login');
         });
     };
 
     $scope.doViewProfile = function() {
-        $state.go('profile', { id : principal.getUser().id });
+        $state.go('user', { id: principal.getUser().id });
     };
 
     $scope.resolveLink = function(n) {
@@ -40,7 +41,7 @@ module.exports = function($scope, $state, $stateParams, $log, $q, notifications,
 
             var totalRead = ($scope.readNotifications.length > 10 ? 10 : $scope.readNotifications.length);
             for (var i = 0; i < totalRead; i++) {
-                if ($scope.readNotifications[i].read == false) {
+                if ($scope.readNotifications[i].read === false) {
                     notifications.setRead($scope.readNotifications[i].id);
                 }
             }

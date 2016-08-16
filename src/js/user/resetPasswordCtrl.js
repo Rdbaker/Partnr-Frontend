@@ -10,7 +10,7 @@ module.exports = function($scope, $state, $stateParams, $log, $q, users, princip
 
 	$scope.validate = function() {
 		return ($scope.password === $scope.confirmPassword) && $scope.password.length >= 8;
-	}
+	};
 
 	$scope.doSubmit = function() {
 		if ($scope.validate()) {
@@ -27,5 +27,5 @@ module.exports = function($scope, $state, $stateParams, $log, $q, users, princip
 		} else {
 			toaster.error("Passwords must match and be greater than 8 characters in length");
 		}
-	}
+	};
 };
