@@ -102,10 +102,10 @@ angular.module('partnr.core', ['ui.router',
   .factory('routeUtils', ['$rootScope', '$http', '$log', '$q', '$state', 'principal', require('./utils/routeUtilsService.js')])
   .directive('pnBgImg', require('./shared/bgImgDirective.js'))
   .controller('HomeController', ['$scope', '$state', '$q', '$log', 'principal', 'search', 'toaster', 'projects', require('./home/homeCtrl')])
-  .controller('SharedController', ['$scope', '$state', '$stateParams', '$log', '$q',
+  .controller('SharedController', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$q',
     'notifications', 'routeUtils', 'principal', 'users', require('./shared/sharedCtrl.js')])
-  .run(['$state', '$rootScope', '$compileProvider', '$logProvider', '$log', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
-    function ($state, $rootScope, $compileProvider, $logProvider, $log, $window, $location, principal, authorization, skills, $templateCache) {
+  .run(['$state', '$rootScope', '$compile', '$log', '$log', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
+    function ($state, $rootScope, $compile, $log, $log, $window, $location, principal, authorization, skills, $templateCache) {
 
    /**
     * Set basic app-level variables and manage state changes
@@ -117,7 +117,7 @@ angular.module('partnr.core', ['ui.router',
   if (window.location.host === 'app.partnr-up.com') {
     apiHost = apiHostElt.getAttribute('prd');
     $logProvider.debugEnabled(false);
-    $compileProvider.debugInfoEnabled(false);
+    $compile.debugInfoEnabled(false);
   } else if (window.location.host === 'dev.partnr-up.com') {
     apiHost = apiHostElt.getAttribute('dev');
   } else {
