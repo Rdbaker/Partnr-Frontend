@@ -21,6 +21,7 @@
     "get-size": "^2.0.2",
     "imagesloaded": "^4.1.0",
     "matches-selector": "^1.0.0",
+    "mixpanel": "^0.4.0",
     "ng-tags-input": "^3.1.1",
     "outlayer": "^2.1.0",
     "partnr-style-guide": "0.0.30"

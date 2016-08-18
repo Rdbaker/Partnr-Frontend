@@ -1,4 +1,4 @@
-module.exports = function($rootScope, toaster, $timeout, $log) {
+module.exports = ['$rootScope', '$timeout',' $log', function($rootScope, $timeout, $log) {
     return {
         restrict: 'AE',
         templateUrl: 'toaster/toasts.html',
@@ -20,4 +20,4 @@ module.exports = function($rootScope, toaster, $timeout, $log) {
             };
         }
     };
-};
+}];

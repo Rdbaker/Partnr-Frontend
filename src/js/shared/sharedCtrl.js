@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $state, $stateParams, $log, $q, notifications, routeUtils, principal, users) {
+module.exports = ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$q', 'notifications', 'routeUtils', 'principal', 'users', function($rootScope, $scope, $state, $stateParams, $log, $q, notifications, routeUtils, principal, users) {
     $scope.newNotifications = {};
     $scope.allNotifications = {};
 
@@ -47,4 +47,4 @@ module.exports = function($rootScope, $scope, $state, $stateParams, $log, $q, no
             }
         }
     };
-};
+}];

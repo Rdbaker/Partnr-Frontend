@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, $log, $q, $state, principal) {
+module.exports = ['$rootScope', '$http', '$log', '$q', '$state', 'principal', function($rootScope, $http, $log, $q, $state, principal) {
     var routeObject = function() {
         this.name = "";
         this.params = {};
@@ -241,4 +241,4 @@ module.exports = function($rootScope, $http, $log, $q, $state, principal) {
             });
         }
     };
-};
+}];

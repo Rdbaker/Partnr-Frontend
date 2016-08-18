@@ -1,7 +1,7 @@
 module.exports = function($rootScope, $state, routeUtils) {
     return {
         restrict: 'AE',
-        templateUrl: 'feed/feed_activity.html',
+        templateUrl: '/feed/feed_activity.html',
         scope: {
             activity: '='
         },

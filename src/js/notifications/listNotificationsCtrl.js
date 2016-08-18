@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $stateParams, $log, notifications, routeUtils) {
+module.exports = ['$scope', '$state', '$stateParams', '$log', 'notifications', 'routeUtils', function($scope, $state, $stateParams, $log, notifications, routeUtils) {
     $scope.loadComplete = true;
     $scope.notifications = notifications;
     $scope.allNotifications = notifications.get();
@@ -18,4 +18,4 @@ module.exports = function($scope, $state, $stateParams, $log, notifications, rou
             }
         }
     });
-};
+}];

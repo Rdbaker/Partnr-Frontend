@@ -1,4 +1,4 @@
-module.exports =  function($rootScope, $state, $log, $q, principal) {
+module.exports =  ['$rootScope', '$state', '$log', '$q', 'principal',function($rootScope, $state, $log, $q, principal) {
   return {
     authorize: function() {
       var deferred = $q.defer();
@@ -38,4 +38,4 @@ module.exports =  function($rootScope, $state, $log, $q, principal) {
       return deferred.promise;
     }
   };
-};
+}];

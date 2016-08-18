@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, $log, principal) {
+module.exports = ['$rootScope', '$http', '$log', 'principal', function($rootScope, $http, $log, principal) {
 	return {
 		createNew : function() {
 			return {
@@ -42,4 +42,4 @@ module.exports = function($rootScope, $http, $log, principal) {
 			});
 		}
 	};
-};
+}];

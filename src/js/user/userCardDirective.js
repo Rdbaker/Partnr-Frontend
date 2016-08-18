@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $state) {
+module.exports =  ['$state', function($state) {
     return {
         restrict: 'AE',
         templateUrl: 'user/user_card.html',
@@ -27,4 +27,4 @@ module.exports = function($rootScope, $state) {
             });
         }
     };
-};
+}];

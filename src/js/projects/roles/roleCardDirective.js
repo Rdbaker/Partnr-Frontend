@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $state) {
+module.exports = ['$rootScope', '$state', function($rootScope, $state) {
     return {
         restrict: 'AE',
         templateUrl: 'projects/roles/role_card.html',
@@ -9,4 +9,4 @@ module.exports = function($rootScope, $state) {
             $scope.$state = $state;
         }
     };
-};
+}];

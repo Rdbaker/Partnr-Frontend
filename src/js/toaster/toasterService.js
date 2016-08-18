@@ -1,4 +1,4 @@
-module.exports = function($rootScope) {
+module.exports = ['$rootScope', function($rootScope) {
 
     function toast(type, text) {
         $rootScope.$broadcast('toast', {
@@ -21,4 +21,4 @@ module.exports = function($rootScope) {
             toast('info', text);
         }
     };
-};
+}];

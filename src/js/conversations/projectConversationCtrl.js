@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $stateParams, $log, $interval, toaster, conversations) {
+module.exports = ['$rootScope', '$scope', '$stateParams', '$log', '$interval', 'toaster', 'conversations', function($rootScope, $scope, $stateParams, $log, $interval, toaster, conversations) {
     $scope.conversation = {};
     $scope.isMessageSubmitting = false;
     $scope.newMessage = "";
@@ -39,4 +39,4 @@ module.exports = function($rootScope, $scope, $stateParams, $log, $interval, toa
             $scope.isMessageSubmitting = false;
         });
     };
-};
+}];

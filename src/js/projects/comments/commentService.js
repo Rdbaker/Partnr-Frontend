@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, $log, principal) {
+module.exports =  ['$rootScope', '$http', '$log', 'principal', function($rootScope, $http, $log, principal) {
 	return {
 		get : function(id) {
 			$log.debug("[PROJECT COMMENT] Sending Get request");
@@ -50,4 +50,4 @@ module.exports = function($rootScope, $http, $log, principal) {
 			return (comment.content.length > 0);
 		}
 	};
-};
+}];

@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $log, $q, $filter, toaster, users, principal, profiles, $rootScope, $timeout) {
+module.exports = ['$scope', '$state', '$log', '$q', '$filter', 'toaster', 'users','principal', 'profiles', '$rootScope', '$timeout', function($scope, $state, $log, $q, $filter, toaster, users, principal, profiles, $rootScope, $timeout) {
     $scope.loadComplete = false;
 
 
@@ -151,4 +151,4 @@ module.exports = function($scope, $state, $log, $q, $filter, toaster, users, pri
             $scope.loadComplete = true;
         });
     };
-};
+}];

@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $log, $state, $q, principal, toaster) {
+module.exports = ['$rootScope', '$scope', '$log', '$state', '$q', 'principal', 'toaster', function($rootScope, $scope, $log, $state, $q, principal, toaster) {
     $scope.email = '';
     $scope.password = '';
     $scope.loading = false;
@@ -36,4 +36,4 @@ module.exports = function($rootScope, $scope, $log, $state, $q, principal, toast
             toaster.warn(toastContent);
         }
     };
-};
+}];

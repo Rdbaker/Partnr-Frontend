@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $filter, $stateParams, $log, $q, projects, milestones, tasks, principal, toaster) {
+module.exports = ['$scope', '$state', '$filter', '$stateParams', '$log', '$q', 'projects', 'milestones', 'tasks', 'principal', 'toaster', function($scope, $state, $filter, $stateParams, $log, $q, projects, milestones, tasks, principal, toaster) {
     $scope.project = {};
     $scope.searchText = '';
     $scope.tasks = [];
@@ -65,4 +65,4 @@ module.exports = function($scope, $state, $filter, $stateParams, $log, $q, proje
             $state.go('project_task_create', { project_id: $stateParams.project_id });
         }
     };
-};
+}];

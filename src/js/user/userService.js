@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, $log, principal) {
+module.exports = ['$rootScope', '$http', '$log', 'principal', function($rootScope, $http, $log, principal) {
     return {
         getAllUsers: function(per_page, page) {
             $log.debug("[USER] Sending GET all users request", per_page);
@@ -99,4 +99,4 @@ module.exports = function($rootScope, $http, $log, principal) {
             });
         }
     };
-};
+}];

@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $log, $q, users, principal, toaster) {
+module.exports = ['$scope', '$state', '$log', '$q', 'users', 'principal', 'toaster', function($scope, $state, $log, $q, users, principal, toaster) {
     $scope.email = "";
     $scope.submitted = false;
     $scope.loadComplete = true;
@@ -18,4 +18,4 @@ module.exports = function($scope, $state, $log, $q, users, principal, toaster) {
             toaster.error("Please ensure that you entered a valid email address");
         }
     };
-};
+}];

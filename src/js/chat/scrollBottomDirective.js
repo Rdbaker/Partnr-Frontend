@@ -4,7 +4,7 @@ module.exports = function($timeout) {
         scope: {
             messages: '='
         },
-        templateUrl: 'chat/chat_conversation.html',
+        templateUrl: '/chat/chat_conversation.html',
         link: function(scope, element, attrs) {
             var todayDate = new Date();
             scope.isLoaded = false;

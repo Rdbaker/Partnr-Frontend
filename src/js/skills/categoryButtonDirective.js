@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $state, skills) {
+module.exports = ['$rootScope', '$state', 'skills', function($rootScope, $state, skills) {
     return {
         restrict: 'AE',
         templateUrl: 'skills/category_button.html',
@@ -21,4 +21,4 @@ module.exports = function($rootScope, $state, skills) {
             };
         }
     };
-};
+}];

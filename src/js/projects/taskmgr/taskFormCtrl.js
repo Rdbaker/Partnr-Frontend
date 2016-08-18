@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $state, $stateParams, $log, $q, $timeout, tasks, milestones, skills, principal, modals, toaster) {
+module.exports = ['$scope', '$state', '$stateParams', '$log', '$q', '$timeout', 'tasks', 'milestones', 'skills', 'principal', 'modals', 'toaster',function($scope, $rootScope, $state, $stateParams, $log, $q, $timeout, tasks, milestones, skills, principal, modals, toaster) {
     $scope.task = {
         title: '',
         description: '',
@@ -48,7 +48,7 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, $q, $t
             if (role.user && role.user.id) {
                 $scope.users.push(role.user);
             }
-        };
+        }
 
         doLoadStep();
     });
@@ -217,4 +217,4 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, $q, $t
             project: $stateParams.project_id
         };
     };
-};
+}];

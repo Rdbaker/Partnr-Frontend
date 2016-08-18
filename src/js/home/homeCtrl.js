@@ -1,5 +1,4 @@
-module.exports = function($scope, $state, $q, $log,
-    principal, search, toaster, projects) {
+module.exports = ['$scope', '$state', '$q', '$log', 'principal', 'search', 'toaster', 'projects', function($scope, $state, $q, $log, principal, search, toaster, projects) {
     $scope.user = principal.getUser();
     $scope.searchQuery = '';
 
@@ -11,4 +10,4 @@ module.exports = function($scope, $state, $q, $log,
     $scope.doSearch = function() {
         $state.go('search', { q: $scope.searchQuery });
     };
-};
+}];

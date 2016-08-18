@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $state, $stateParams, $log, $q, projects, applications, principal, toaster) {
+module.exports = ['$scope', '$state', '$stateParams', '$log','$q', 'projects', 'applications', 'principal', 'toaster', function($scope, $rootScope, $state, $stateParams, $log, $q, projects, applications, principal, toaster) {
 	$scope.project = {};
 	$scope.applications = [];
 	$scope.isOwner = false;
@@ -47,4 +47,4 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, $q, pr
 			$scope.loadComplete = true;
 		}
 	};
-};
+}];

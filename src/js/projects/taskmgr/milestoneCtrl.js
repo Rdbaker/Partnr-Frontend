@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $filter, $stateParams, $log, $q, projects, milestones, tasks, principal, toaster) {
+module.exports = ['$scope', '$state', '$filter', '$stateParams', '$log', '$q', 'projects', 'milestones', 'tasks', 'principal', 'toaster', function($scope, $state, $filter, $stateParams, $log, $q, projects, milestones, tasks, principal, toaster) {
     $scope.now = new Date();
     $scope.milestoneDate = null;
 
@@ -43,4 +43,4 @@ module.exports = function($scope, $state, $filter, $stateParams, $log, $q, proje
     $scope.newTask = function() {
         $state.go('project_task_create', { project_id: $stateParams.project_id, mref: $scope.milestone.id });
     };
-};
+}];

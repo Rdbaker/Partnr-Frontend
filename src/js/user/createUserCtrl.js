@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $state, $log, $q, users, principal, toaster) {
+module.exports = ['$scope', '$state', '$log', '$q', 'users', 'principal', 'toaster', function($scope, $state, $log, $q, users, principal, toaster) {
     $scope.acct = {
         email: "",
         first_name: "",
@@ -45,4 +45,4 @@ module.exports = function($rootScope, $scope, $state, $log, $q, users, principal
             toaster.error("Please ensure that you entered data in all of the fields");
         }
     };
-};
+}];

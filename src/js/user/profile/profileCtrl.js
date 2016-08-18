@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $stateParams, $log, toaster, users) {
+module.exports =  ['$scope', '$state', '$stateParams', '$log', 'toaster', 'users', function($scope, $state, $stateParams, $log, toaster, users) {
 	$scope.loadComplete = false;
 	$scope.user = null;
 
@@ -7,4 +7,4 @@ module.exports = function($scope, $state, $stateParams, $log, toaster, users) {
 		$scope.user = result.data;
 		$scope.loadComplete = true;
 	});
-};
+}];

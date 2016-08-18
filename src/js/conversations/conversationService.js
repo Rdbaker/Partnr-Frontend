@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, $log, principal) {
+module.exports = ['$rootScope', '$http', '$log', 'principal', function($rootScope, $http, $log, principal) {
     return {
 
         list: function() {
@@ -70,4 +70,4 @@ module.exports = function($rootScope, $http, $log, principal) {
             });
         }
     };
-};
+}];

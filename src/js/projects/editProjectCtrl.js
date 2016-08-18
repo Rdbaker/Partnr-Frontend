@@ -1,5 +1,4 @@
-module.exports = function($scope, $state,
-    $stateParams, $log, $q, $filter, projects, applications, roles, principal, toaster, modals, $rootScope) {
+module.exports = ['$scope', '$state', '$stateParams', '$log', '$q', '$filter', 'projects', 'applications', 'roles', 'principal', 'toaster', 'modals', '$rootScope', function($scope, $state, $stateParams, $log, $q, $filter, projects, applications, roles, principal, toaster, modals, $rootScope) {
     $scope.project = {
         status: 'not_started'
     };
@@ -93,4 +92,4 @@ module.exports = function($scope, $state,
             $scope.loadComplete = true;
         });
     };
-};
+}];

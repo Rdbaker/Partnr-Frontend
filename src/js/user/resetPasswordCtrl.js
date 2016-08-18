@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $stateParams, $log, $q, users, principal, toaster) {
+module.exports = ['$scope', '$state', '$stateParams', '$log', '$q', 'users', 'principal', 'toaster', function($scope, $state, $stateParams, $log, $q, users, principal, toaster) {
 	$scope.token = $stateParams.reset_password_token;
 	$scope.password = "";
 	$scope.confirmPassword = "";
@@ -28,4 +28,4 @@ module.exports = function($scope, $state, $stateParams, $log, $q, users, princip
 			toaster.error("Passwords must match and be greater than 8 characters in length");
 		}
 	};
-};
+}];

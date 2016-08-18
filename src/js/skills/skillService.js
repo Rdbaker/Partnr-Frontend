@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, $log, principal) {
+module.exports = ['$rootScope', '$http', '$log', 'principal', function($rootScope, $http, $log, principal) {
     return {
         listCategories: function(id) {
             $log.debug('[SKILL] Sending get request for categories');
@@ -71,4 +71,4 @@ module.exports = function($rootScope, $http, $log, principal) {
             } : null;
         }
     };
-};
+}];

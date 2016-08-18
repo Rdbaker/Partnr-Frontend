@@ -1,4 +1,4 @@
-module.exports = function($scope, conversations) {
+module.exports = ['$scope', 'conversations', function($scope, conversations) {
     $scope.userIdPattern = new RegExp("(\\d+),+|(\\d+)");
     $scope.userIdText = "";
 
@@ -11,4 +11,4 @@ module.exports = function($scope, conversations) {
     conversations.list().then(function(result) {
         $log.debug(result);
     });
-};
+}];

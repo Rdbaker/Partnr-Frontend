@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $log, $q, toaster, profiles, users) {
+module.exports = ['$scope', '$state', '$log', '$q', 'toaster', 'profiles', 'users', function($scope, $state, $log, $q, toaster, profiles, users) {
     $scope.loadComplete = true;
 
     $scope.location = "";
@@ -84,4 +84,4 @@ module.exports = function($scope, $state, $log, $q, toaster, profiles, users) {
             $scope.loadComplete = true;
         });
     };
-};
+}];
