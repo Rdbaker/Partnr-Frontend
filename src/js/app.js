@@ -1,6 +1,9 @@
-var jquery =require('jquery');
+require('jquery');
+global.jQuery = require('jquery');
+global.$ = jQuery;
 var angular = require('angular');
-var jQueryBridget = require('jquery-bridget');
+require('jquery-bridget');
+require('masonry-layout');
 require('ev-emitter');
 require('matches-selector');
 require('fizzy-ui-utils');
@@ -8,8 +11,7 @@ require('get-size');
 require('mixpanel');
 require('outlayer/item');
 require('outlayer');
-var Masonry = require('masonry-layout');
-jQueryBridget( 'masonry', Masonry, jquery );
+
 require('imagesloaded');
 require('angular-masonry');
 require('angular-ui-router');
