@@ -4,10 +4,10 @@ require('ev-emitter');
 require('matches-selector');
 require('fizzy-ui-utils');
 require('get-size');
+require('mixpanel');
 require('outlayer/item');
 require('outlayer');
 require('masonry-layout');
-require('mixpanel');
 require('imagesloaded');
 var angular = require('angular');
 require('angular-masonry');
@@ -44,11 +44,11 @@ angular.module('partnr.search', [])
     .controller('SearchController', require('./search/searchCtrl.js'));
 
 angular.module('partnr.users.assets', [])
-.factory('FeedService', require('./feed/feedService.js'))
+    .factory('feeds', require('./feed/feedService.js'))
     .factory('skills', require('./skills/skillService.js'))
     .factory('profiles', require('./user/profile/profileService.js'))
     .factory('projects', require('./projects/projectService.js'))
-    .factory('applications',require('./projects/applications/applicationService.js'))
+    .factory('applications', require('./projects/applications/applicationService.js'))
     .factory('comments', require('./projects/comments/commentService.js'))
     .factory('roles', require('./projects/roles/roleService.js'))
     .factory('milestones', require('./projects/taskmgr/milestoneService.js'))
@@ -63,11 +63,11 @@ angular.module('partnr.users.assets', [])
     .controller('FeedController', require('./feed/feedCtrl.js'))
     .controller('SettingsController', require('./settings/settingsCtrl.js'))
     .controller('pnConnBtn', require('./shared/connBtnDirective.js'))
-    .controller('CreateProfileController',  require('./user/profile/createProfileCtrl.js'))
+    .controller('CreateProfileController', require('./user/profile/createProfileCtrl.js'))
     .controller('EditProfileController', require('./user/profile/editProfileCtrl.js'))
     .controller('ProfileController', require('./user/profile/profileCtrl.js'))
     .controller('PartnersController', require('./partners/partnersCtrl.js'))
-    .controller('ListApplicationsController',  require('./projects/applications/listApplicationsCtrl.js'))
+    .controller('ListApplicationsController', require('./projects/applications/listApplicationsCtrl.js'))
     .controller('ListTasksController', require('./projects/taskmgr/ListTasksCtrl.js'))
     .controller('MilestoneController', require('./projects/taskmgr/milestoneCtrl.js'))
     .controller('MilestoneFormController', require('./projects/taskmgr/milestoneCtrl.js'))
@@ -87,6 +87,7 @@ angular.module('partnr.core', ['ui.router',
     ])
     .config(require('./appRoutes.js'))
     .factory('routeUtils', require('./utils/routeUtilsService.js'))
+    .controller('LandingController', require('./landing/landingCtrl.js'))
     .directive('pnBgImg', require('./shared/bgImgDirective.js'))
     .controller('HomeController', require('./home/homeCtrl'))
     .controller('SharedController', require('./shared/sharedCtrl.js'))

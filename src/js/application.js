@@ -1,6 +1,6 @@
 //= require jquery/dist/jquery.min
-//= require masonry/dist/masonry.pkgd.min
 //= require jquery-bridget/jquery-bridget
+//= require masonry/dist/masonry.pkgd.min
 //= require ev-emitter/ev-emitter
 //= require fizzy-ui-utils/utils
 //= require outlayer/outlayer

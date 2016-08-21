@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $q, $log, principal, projects) {
+module.exports = ['$scope','projects', function($scope, projects) {
     $scope.projects = [];
     $scope.loadComplete = false;
 
@@ -6,4 +6,4 @@ module.exports = function($scope, $state, $q, $log, principal, projects) {
         $scope.projects = result.data;
         $scope.loadComplete = true;
     });
-};
+}];

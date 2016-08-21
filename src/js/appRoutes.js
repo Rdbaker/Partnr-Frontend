@@ -1,5 +1,7 @@
 require('./auth/login.html');
 require('./auth/login_form.html');
+require('./feed/feed.html');
+require('./landing/landing.html');
 require('./conversations/list_conversation.html');
 require('./conversations/project_conversation.html');
 require('./home/home.html');
@@ -67,7 +69,7 @@ module.exports = ['$stateProvider', '$urlRouterProvider', function($stateProvide
         url: '/',
         views: {
             'feed@home': {
-                templateUrl: 'feed/feed.html',
+                templateUrl: '/feed/feed.html',
                 controller: 'FeedController'
             }
         },
