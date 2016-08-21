@@ -103,7 +103,7 @@ angular.module('partnr.core', ['ui.router',
             document.domain = 'partnr-up.com';
             if (window.location.host === 'app.partnr-up.com') {
                 apiHost = apiHostElt.getAttribute('prd');
-                $logProvider.debugEnabled(false);
+                $log.debugEnabled(false);
                 $compile.debugInfoEnabled(false);
             } else if (window.location.host === 'dev.partnr-up.com') {
                 apiHost = apiHostElt.getAttribute('dev');
@@ -179,5 +179,6 @@ angular.module('partnr.core', ['ui.router',
             });
 
             document.getElementById('appVersion').text = $rootScope.version;
+
         }
     ]);
