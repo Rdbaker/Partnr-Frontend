@@ -67,7 +67,7 @@ module.exports = ['$stateProvider', '$urlRouterProvider', function($stateProvide
         url: '/',
         views: {
             'feed@home': {
-                templateUrl: '/feed/feed.html',
+                templateUrl: 'feed/feed.html',
                 controller: 'FeedController'
             }
         },

@@ -6,6 +6,7 @@
 //= require outlayer/outlayer
 //= require outlayer/item
 //= require get-size/get-size
+//= require mixpanel/mixpanel
 //= require matches-selector/matches-selector
 //= require imagesloaded/imagesloaded.pkgd.min
 //= require angular/angular.min
