@@ -8,15 +8,18 @@ require('ev-emitter');
 require('matches-selector');
 require('fizzy-ui-utils');
 require('get-size');
-require('mixpanel');
+var mixpanel = require('mixpanel');
 require('outlayer/item');
 require('outlayer');
-
 require('imagesloaded');
 require('angular-masonry');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('ng-tags-input');
+require('angular-sanitize');
+//Set Mixpanel Tracking Object
+var Mixpanel = require('mixpanel');
+window.mixpanel = Mixpanel.init('25670274c530cc588da3daa0e70a00ee');
 
 angular.module('partnr.auth', [])
     .factory('principal', require('./auth/principalService.js'))
@@ -33,13 +36,20 @@ angular.module('partnr.users', [])
 
 angular.module('partnr.messaging', [])
     .factory('conversations', require('./conversations/conversationService.js'))
+    .service('modals', require('./modals/modalService.js'))
+    .controller('ChatController', require('./chat/chatCtrl.js'))
     .controller('ListConversationController', require('./conversations/listConversationCtrl.js'))
-    .controller('ProjectConversationController', require('./conversations/projectConversationCtrl.js'));
+    .controller('ProjectConversationController', require('./conversations/projectConversationCtrl.js'))
+    .controller('AlertModalController', require('./modals/alertModalCtrl.js'))
+    .controller('ConfirmModalController', require('./modals/confirmModalCtrl.js'))
+    .controller('SelectCategoriesModalController', require('./modals/selectCategoriesModalCtrl.js'))
+    .directive('chatMessageList', require('./chat/chatMessageListDirective.js'))
+    .directive('finishRender', require('./chat/finishRenderDirective.js'));
 
 angular.module('partnr.notify', [])
     .factory('toaster', require('./toaster/toasterService.js'))
     .factory('notifications', require('./notifications/notificationService.js'))
-    .directive('toaster', require('./toaster/toastDirective.js'))
+    .directive('toasts', require('./toaster/toastDirective.js'))
     .controller('ListNotificationsController', require('./notifications/listNotificationsCtrl.js'));
 
 angular.module('partnr.search', [])
@@ -55,7 +65,8 @@ angular.module('partnr.users.assets', [])
     .factory('comments', require('./projects/comments/commentService.js'))
     .factory('roles', require('./projects/roles/roleService.js'))
     .factory('milestones', require('./projects/taskmgr/milestoneService.js'))
-    .factory('tasks', ['$rootScope', '$http', '$log', 'principal', require('./projects/taskmgr/taskService.js')])
+    .factory('tasks', require('./projects/taskmgr/taskService.js'))
+    .factory('connections', require('./user/connectionService.js'))
     .directive('feedActivity', require('./feed/feedActivityDirective.js'))
     .directive('categoryButton', require('./skills/categoryButtonDirective.js'))
     .directive('skillCategoryEditor', require('./skills/skillCategoryEditorDirective.js'))
@@ -69,6 +80,11 @@ angular.module('partnr.users.assets', [])
     .controller('CreateProfileController', require('./user/profile/createProfileCtrl.js'))
     .controller('EditProfileController', require('./user/profile/editProfileCtrl.js'))
     .controller('ProfileController', require('./user/profile/profileCtrl.js'))
+    .controller('ProfileActivityController', require('./user/profile/profileActivityCtrl.js'))
+    .controller('ProfileConnectionsController', require('./user/profile/profileConnectionsCtrl.js'))
+    .controller('ProfileProjectsController', require('./user/profile/profileProjectsCtrl.js'))
+    .controller('ProfileSkillsController', require('./user/profile/profileSkillsCtrl.js'))
+    .controller('ProfileWrapperController', require('./user/profile/profileWrapperCtrl.js'))
     .controller('PartnersController', require('./partners/partnersCtrl.js'))
     .controller('ListApplicationsController', require('./projects/applications/listApplicationsCtrl.js'))
     .controller('ListTasksController', require('./projects/taskmgr/ListTasksCtrl.js'))
@@ -86,9 +102,10 @@ angular.module('partnr.core', ['ui.router',
         'ui.bootstrap', 'wu.masonry', 'ngTagsInput',
         'partnr.auth', 'partnr.users', 'partnr.messaging',
         'partnr.notify', 'partnr.search', 'partnr.users.assets',
-        'templates'
+        'templates', 'ngSanitize'
     ])
     .config(require('./appRoutes.js'))
+    .filter('limitLength', require('./filters/limitLengthFilter.js'))
     .factory('routeUtils', require('./utils/routeUtilsService.js'))
     .controller('LandingController', require('./landing/landingCtrl.js'))
     .directive('pnBgImg', require('./shared/bgImgDirective.js'))
@@ -96,6 +113,7 @@ angular.module('partnr.core', ['ui.router',
     .controller('SharedController', require('./shared/sharedCtrl.js'))
     .run(['$state', '$rootScope', '$compile', '$log', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
         function($state, $rootScope, $compile, $log, $window, $location, principal, authorization, skills, $templateCache) {
+
 
             /**
              * Set basic app-level variables and manage state changes
@@ -180,6 +198,15 @@ angular.module('partnr.core', ['ui.router',
                     $log.debug(result.data);
                 }
             });
+
+            /**
+             * Create the feature gate
+             */
+            $rootScope.featureGate = {
+                profile: {
+                    msgBtn: false
+                }
+            };
 
             document.getElementById('appVersion').text = $rootScope.version;
 

@@ -1,4 +1,4 @@
-module.exports = function($scope, $uibModalInstance, $filter, $log, selectedCategories) {
+module.exports = ['$scope', '$uibModalInstance', '$filter', '$log', 'selectedCategories', function($scope, $uibModalInstance, $filter, $log, selectedCategories) {
     $scope.max = 3;
     $scope.selected = [];
 
@@ -41,4 +41,4 @@ module.exports = function($scope, $uibModalInstance, $filter, $log, selectedCate
     $scope.cancel = function() {
         $uibModalInstance.close(false);
     };
-};
+}];

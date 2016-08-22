@@ -1,4 +1,4 @@
-module.exports = function($timeout) {
+module.exports = ['$timeout', function($timeout) {
     return {
         restrict: 'AE',
         scope: {
@@ -36,4 +36,4 @@ module.exports = function($timeout) {
             };
         }
     };
-};
+}];

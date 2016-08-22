@@ -1,4 +1,4 @@
-module.exports = function($uibModal, $location, $log) {
+module.exports = ['$uibModal', '$location', '$log', function($uibModal, $location, $log) {
     return {
         // modals
 
@@ -9,9 +9,11 @@ module.exports = function($uibModal, $location, $log) {
                 controller: 'AlertModalController',
                 resolve: {
                     title: function() {
-                        return title; },
+                        return title;
+                    },
                     message: function() {
-                        return message; },
+                        return message;
+                    },
 
                 }
             });
@@ -24,7 +26,8 @@ module.exports = function($uibModal, $location, $log) {
                 controller: 'ConfirmModalController',
                 resolve: {
                     message: function() {
-                        return message; }
+                        return message;
+                    }
                 }
             });
 
@@ -37,11 +40,12 @@ module.exports = function($uibModal, $location, $log) {
                 controller: 'SelectCategoriesModalController',
                 resolve: {
                     selectedCategories: function() {
-                        return selectedCategories; }
+                        return selectedCategories;
+                    }
                 }
             });
 
             modal.result.then(callback);
         }
     };
-};
+}];

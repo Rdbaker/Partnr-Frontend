@@ -1,4 +1,4 @@
-module.exports = function($timeout, $parse) {
+module.exports = ['$timeout', '$parse', function($timeout, $parse) {
     return {
         restrict: 'A',
         link: function(scope, element, attr) {
@@ -12,4 +12,4 @@ module.exports = function($timeout, $parse) {
             }
         }
     };
-};
+}];

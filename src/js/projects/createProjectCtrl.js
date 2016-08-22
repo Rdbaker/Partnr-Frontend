@@ -1,4 +1,4 @@
-module.exports = ['$scope', '$state', '$log', '$q', '$timeout', 'projects', 'roles', 'principal', 'toaster', function($scope, $rootScope, $state, $log, $q, $timeout, projects, roles, principal, toaster) {
+module.exports = ['$scope', '$rootScope', '$state', '$log', '$q', '$timeout', 'projects', 'roles', 'principal', 'toaster', function($scope, $rootScope, $state, $log, $q, $timeout, projects, roles, principal, toaster) {
     $scope.step = 1;
     $scope.coverPhoto = null;
     $scope.project = {

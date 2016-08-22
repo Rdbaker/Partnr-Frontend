@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $state, $q, $stateParams, $filter, $log, principal, toaster, users) {
+module.exports = ['$scope', '$rootScope', '$state', '$q', '$stateParams', '$filter', '$log', 'principal', 'toaster', 'users', function($scope, $rootScope, $state, $q, $stateParams, $filter, $log, principal, toaster, users) {
     $scope.loadComplete = false;
     $scope.user = null;
     $scope.currentUser = principal.getUser();
@@ -47,4 +47,4 @@ module.exports = function($scope, $rootScope, $state, $q, $stateParams, $filter,
     };
 
     $scope.initialize();
-};
+}];

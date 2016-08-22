@@ -1,4 +1,4 @@
-module.exports = ['$scope', '$state', '$stateParams', '$log', '$q', 'projects', 'applications', 'comments', 'principal', 'toaster', function($scope, $rootScope, $state, $stateParams, $log, $q, projects, applications, principal, toaster, modals, roles) {
+module.exports = ['$scope', '$state', '$stateParams', '$log', '$q', 'projects', 'applications', 'principal', 'toaster', 'modals', 'roles', function($scope, $state, $stateParams, $log, $q, projects, applications, principal, toaster, modals, roles) {
     $scope.project = {};
     $scope.canApply = false;
     $scope.isOwner = false;
