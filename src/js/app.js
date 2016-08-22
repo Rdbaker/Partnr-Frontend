@@ -136,7 +136,7 @@ angular.module('partnr.core', ['ui.router',
             $rootScope.$state = $state; // application state
             $rootScope.apiVersion = "v1";
             $rootScope.apiRoute = apiHost + '/api/' + $rootScope.apiVersion + '/';
-            $rootScope.version = '1.1.0';
+            $rootScope.version = '1.2.2';
             $rootScope.pollDuration = 10000;
             var bypassAuthCheck = false;
 

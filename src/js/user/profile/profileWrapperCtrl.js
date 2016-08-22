@@ -1,6 +1,6 @@
 module.exports = ['$scope', '$rootScope', '$state', '$q', '$stateParams', '$filter', '$log', 'principal', 'toaster', 'users', function($scope, $rootScope, $state, $q, $stateParams, $filter, $log, principal, toaster, users) {
     $scope.loadComplete = false;
-    $scope.user = null;
+    $scope.user = {};
     $scope.currentUser = principal.getUser();
     $scope.msgBtnEnabled = $rootScope.featureGate.profile.msgBtn;
     $scope.profileHasSidebarInfo = false;
@@ -17,9 +17,10 @@ module.exports = ['$scope', '$rootScope', '$state', '$q', '$stateParams', '$filt
             // big if statement to see if we want to display the sidebar
             if ($scope.user.totalSkillScore > 0 ||
                 $scope.user.projects.length > 0 ||
+                ($scope.user.profile !== null &&
                 $scope.user.profile.positions.length > 0 ||
                 $scope.user.profile.school_infos.length > 0 ||
-                $scope.user.profile.interests.length > 0) {
+                $scope.user.profile.interests.length > 0)) {
                 $scope.profileHasSidebarInfo = true;
             }
 
