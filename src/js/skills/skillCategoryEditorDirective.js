@@ -1,7 +1,7 @@
 module.exports =  ['$rootScope', '$state', '$log', 'skills', function($rootScope, $state, $log, skills) {
     return {
         restrict: 'AE',
-        templateUrl: 'skills/skill_category_editor.html',
+        templateUrl: '/skills/skill_category_editor.html',
         scope: {
             categories: '=',
             skills: '='

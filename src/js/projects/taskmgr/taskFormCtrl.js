@@ -1,4 +1,4 @@
-module.exports = ['$scope', '$state', '$stateParams', '$log', '$q', '$timeout', 'tasks', 'milestones', 'skills', 'principal', 'modals', 'toaster',function($scope, $rootScope, $state, $stateParams, $log, $q, $timeout, tasks, milestones, skills, principal, modals, toaster) {
+module.exports = ['$scope','$rootScope', '$state', '$stateParams', '$log', '$q', '$timeout', 'tasks', 'milestones', 'skills', 'principal', 'modals', 'toaster',function($scope, $rootScope, $state, $stateParams, $log, $q, $timeout, tasks, milestones, skills, principal, modals, toaster) {
     $scope.task = {
         title: '',
         description: '',
