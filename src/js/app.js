@@ -13,6 +13,7 @@ require('outlayer/item');
 require('outlayer');
 require('imagesloaded');
 require('angular-masonry');
+require('angular-animate');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('ng-tags-input');
@@ -98,7 +99,7 @@ angular.module('partnr.users.assets', [])
     .controller('ProjectWrapperController', require('./projects/projectWrapperCtrl.js'))
     .controller('UserListProjectController', require('./projects/userListProjectCtrl.js'));
 
-angular.module('partnr.core', ['ui.router',
+angular.module('partnr.core', ['ui.router','ngAnimate',
         'ui.bootstrap', 'wu.masonry', 'ngTagsInput',
         'partnr.auth', 'partnr.users', 'partnr.messaging',
         'partnr.notify', 'partnr.search', 'partnr.users.assets',
