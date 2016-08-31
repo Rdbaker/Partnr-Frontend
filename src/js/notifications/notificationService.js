@@ -49,7 +49,8 @@ module.exports = ['$rootScope', '$http', '$log', '$q', '$timeout', 'principal', 
         var result = notification.message;
 
         for (var k in notification.notifier) {
-            result = result.replace('{' + k + '}', notification.notifier[k].title);
+            if(!!notification.notifier[k] && 'title' in notification.notifier[k])
+              result = result.replace('{' + k + '}', notification.notifier[k].title);
         }
 
         return result;

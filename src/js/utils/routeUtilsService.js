@@ -100,8 +100,12 @@ module.exports = ['$rootScope', '$http', '$log', '$q', '$state', 'principal', fu
                             var dependencyAttr = matches[2];
 
                             // grab the parameter value from the object. if it doesn't
-                            // exist in the object, this will fail
-                            var attrValue = result.data[dependencyName][dependencyAttr];
+                            // exist in the object, assume it's the top level attribute
+                            try {
+                              var attrValue = result.data[dependencyName][dependencyAttr];
+                            } catch (exc) {
+                              var attrValue = result.data[dependencyAttr];
+                            }
                             route.params[key] = attrValue;
                         } else {
                             $log.debug("[ROUTE UTILS] Error parsing key: " + key);

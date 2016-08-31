@@ -1,4 +1,5 @@
-module.exports = function($scope, $rootScope, $state, $stateParams, $log, toaster, users, feeds) {
+module.exports = ['$scope', '$rootScope', '$state', '$stateParams', '$log', 'toaster', 'users', 'feeds',
+  function($scope, $rootScope, $state, $stateParams, $log, toaster, users, feeds) {
     $scope.loadComplete = false;
     $scope.user = null;
     $scope.endOfFeed = false;
@@ -62,4 +63,4 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, toaste
             $scope.loadComplete = true;
         });
     };
-};
+}];
