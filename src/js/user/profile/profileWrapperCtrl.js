@@ -1,6 +1,6 @@
 module.exports = ['$scope', '$rootScope', '$state', '$q', '$stateParams', '$filter', '$log', 'principal', 'toaster', 'users', function($scope, $rootScope, $state, $q, $stateParams, $filter, $log, principal, toaster, users) {
     $scope.loadComplete = false;
-    $scope.user = {};
+    $scope.user = null;
     $scope.currentUser = principal.getUser();
     $scope.msgBtnEnabled = $rootScope.featureGate.profile.msgBtn;
     $scope.profileHasSidebarInfo = false;
