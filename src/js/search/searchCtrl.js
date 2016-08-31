@@ -1,4 +1,4 @@
-module.exports = ['$scope', '$rootScope', '$state', '$stateParams', '$q', '$log', function($scope, $rootScope, $state, $stateParams, $q, $log,
+module.exports = ['$scope', '$rootScope', '$state', '$stateParams', '$q', '$log', 'principal', 'search', 'toaster', 'applications', function($scope, $rootScope, $state, $stateParams, $q, $log,
     principal, search, toaster, applications) {
     $scope.user = principal.getUser();
     $scope.projects = [];
