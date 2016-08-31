@@ -1,7 +1,7 @@
 module.exports = ['$rootScope', '$state', 'skills', function($rootScope, $state, skills) {
     return {
         restrict: 'AE',
-        templateUrl: 'skills/category_button.html',
+        templateUrl: '/skills/category_button.html',
         scope: {
             category: '=',
             selectable: '=?',

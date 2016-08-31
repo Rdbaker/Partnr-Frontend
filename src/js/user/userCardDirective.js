@@ -1,7 +1,7 @@
 module.exports =  ['$state', function($state) {
     return {
         restrict: 'AE',
-        templateUrl: 'user/user_card.html',
+        templateUrl: '/user/user_card.html',
         scope: {
             user: '='
         },

@@ -1,7 +1,7 @@
 module.exports = function($rootScope, $state, tasks) {
     return {
         restrict: 'AE',
-        templateUrl: 'projects/taskmgr/task_tile.html',
+        templateUrl: '/projects/taskmgr/task_tile.html',
         scope: {
             task: '=',
             mref: '='

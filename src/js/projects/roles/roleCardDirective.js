@@ -1,7 +1,7 @@
 module.exports = ['$rootScope', '$state', function($rootScope, $state) {
     return {
         restrict: 'AE',
-        templateUrl: 'projects/roles/role_card.html',
+        templateUrl: '/projects/roles/role_card.html',
         scope: {
             role: '='
         },
