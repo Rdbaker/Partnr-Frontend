@@ -8,6 +8,7 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, toaste
         projects.listByUser($scope.user.id).then(function(projects) {
             $scope.projects = projects;
             $scope.loadComplete = true;
+            $scope.$broadcast('masonry.reload');
         });
     });
 };
