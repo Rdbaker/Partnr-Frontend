@@ -133,13 +133,14 @@ angular.module('partnr.core', ['ui.router','ngAnimate',
                 apiHost = apiHostElt.getAttribute('lcl');
             }
 
-            principal.fetchCsrf();
             $rootScope.$state = $state; // application state
             $rootScope.apiVersion = "v1";
             $rootScope.apiRoute = apiHost + '/api/' + $rootScope.apiVersion + '/';
+            $rootScope.apiBase = apiHost + '/api/';
             $rootScope.version = '1.2.2';
             $rootScope.pollDuration = 10000;
             var bypassAuthCheck = false;
+            principal.fetchCsrf();
 
             console.log($rootScope.apiRoute);
             console.log(apiHost);

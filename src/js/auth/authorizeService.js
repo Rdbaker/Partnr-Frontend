@@ -17,12 +17,12 @@ module.exports =  ['$rootScope', '$state', '$log', '$q', 'principal',function($r
 
           /* If the app state has roles associated with it
              and the user isn't a member of those roles */
-          if ($rootScope.toState.data.roles && 
-            $rootScope.toState.data.roles.length > 0 && 
+          if ($rootScope.toState.data.roles &&
+            $rootScope.toState.data.roles.length > 0 &&
             !principal.hasAnyRole($rootScope.toState.data.roles)) {
 
             $log.debug("[AUTH] User is not authorized to view this page");
-            
+
             // do nothing for now, no restricted page built yet
             // if (isAuthenticated) {
             //     $log.debug("[AUTH] Redirecting user to restricted page");
