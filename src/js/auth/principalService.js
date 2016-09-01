@@ -10,7 +10,7 @@ module.exports = ['$rootScope', '$http', '$log', '$q', 'toaster', function($root
         /* Gets the csrf token from the user */
         var deferred = $q.defer();
 
-        $http.get('/api/users/sign_in')
+        $http.get($rootScope.apiRoute + 'api/users/sign_in')
             .success(function(data, status, headers, config) {
                 if (data.csrfToken) {
                     csrfToken = data.csrfToken;
@@ -120,7 +120,7 @@ module.exports = ['$rootScope', '$http', '$log', '$q', 'toaster', function($root
 
                 $http({
                         method: 'POST',
-                        url: '/api/users/sign_in',
+                        url: $rootScope.apiRoute + 'api/users/sign_in',
                         headers: {
                             'X-CSRF-Token': csrfToken,
                             'Content-Type': 'application/json'
@@ -164,7 +164,7 @@ module.exports = ['$rootScope', '$http', '$log', '$q', 'toaster', function($root
                         'X-CSRF-Token': csrfToken,
                         'Content-Type': 'application/json'
                     },
-                    url: '/api/users/sign_out'
+                    url: $rootScope.apiRoute + 'api/users/sign_out'
                 }).success(function(data, status, headers, config) {
                     user = undefined;
                     authenticated = false;

@@ -1,4 +1,5 @@
-module.exports = function($scope, $log, users, principal, conversations, $filter, $interval, $rootScope, $timeout, search) {
+module.exports = ['$scope', '$log', 'users', 'principal', 'conversations', '$filter', '$interval', '$rootScope', '$timeout', 'search',
+  function($scope, $log, users, principal, conversations, $filter, $interval, $rootScope, $timeout, search) {
     $scope.openConversation = { 'messages': [] };
     $scope.messageLength = 1000;
     $scope.currentUserId = principal.getUser().id;
@@ -240,4 +241,4 @@ module.exports = function($scope, $log, users, principal, conversations, $filter
                 });
         }
     };
-};
+}];
