@@ -42,7 +42,7 @@ module.exports = ['$rootScope', '$http', '$log', 'principal', function($rootScop
 
             return $http({
                 method: 'POST',
-                url: $rootScope.apiRoute + 'users',
+                url: $rootScope.apiBase + 'users',
                 headers: principal.getHeadersWithCsrf(),
                 data: { "user": acct }
             });
