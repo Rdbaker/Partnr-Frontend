@@ -124,13 +124,8 @@ angular.module('partnr.core', ['ui.router','ngAnimate',
             var apiHost = '';
             document.domain = 'partnr-up.com';
             if (window.location.host === 'app.partnr-up.com') {
-                apiHost = apiHostElt.getAttribute('prd');
                 $log.debugEnabled(false);
                 $compile.debugInfoEnabled(false);
-            } else if (window.location.host === 'dev.partnr-up.com') {
-                apiHost = apiHostElt.getAttribute('dev');
-            } else {
-                apiHost = apiHostElt.getAttribute('lcl');
             }
 
             $rootScope.$state = $state; // application state
