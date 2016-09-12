@@ -44,6 +44,7 @@ module.exports = ['$rootScope', '$http', '$log', 'principal', function($rootScop
                 method: 'POST',
                 url: $rootScope.apiBase + 'users',
                 headers: principal.getHeadersWithCsrf(),
+                withCredentials: true,
                 data: { "user": acct }
             });
         },

@@ -125,6 +125,7 @@ module.exports = ['$rootScope', '$http', '$log', '$q', 'toaster', function($root
                             'X-CSRF-Token': csrfToken,
                             'Content-Type': 'application/json'
                         },
+                        withCredentials: true,
                         data: request
                     })
                     .success(function(data, status, headers, config) {
