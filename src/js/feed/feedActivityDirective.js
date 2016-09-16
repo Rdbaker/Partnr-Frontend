@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $state, routeUtils) {
+module.exports = ['$rootScope', '$state', 'routeUtils', function($rootScope, $state, routeUtils) {
     return {
         restrict: 'AE',
         templateUrl: '/feed/feed_activity.html',
@@ -20,4 +20,4 @@ module.exports = function($rootScope, $state, routeUtils) {
             };
         }
     };
-};
+}];

@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $q, $log, principal, feeds) {
+module.exports = ['$scope', '$state', '$q', '$log', 'principal', 'feeds', function($scope, $state, $q, $log, principal, feeds) {
     if (!principal.hasUser()) $state.go('home.landing');
     $scope.activities = [];
     $scope.loadComplete = false;
@@ -66,4 +66,4 @@ module.exports = function($scope, $state, $q, $log, principal, feeds) {
 
 
     $scope.getNextFeedPage();
-};
+}];
