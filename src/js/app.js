@@ -112,8 +112,8 @@ angular.module('partnr.core', ['ui.router','ngAnimate',
     .directive('pnBgImg', require('./shared/bgImgDirective.js'))
     .controller('HomeController', require('./home/homeCtrl'))
     .controller('SharedController', require('./shared/sharedCtrl.js'))
-    .run(['$state', '$rootScope', '$compile', '$logProvider', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
-        function($state, $rootScope, $compile, $logProvider, $window, $location, principal, authorization, skills, $templateCache) {
+    .run(['$state', '$rootScope', '$compile', '$log', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
+        function($state, $rootScope, $compile, $log, $window, $location, principal, authorization, skills, $templateCache) {
 
 
             /**
