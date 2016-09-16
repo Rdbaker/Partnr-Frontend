@@ -125,8 +125,9 @@ angular.module('partnr.core', ['ui.router','ngAnimate',
             document.domain = 'partnr-up.com';
             if (window.location.host === 'app.partnr-up.com') {
                 apiHost = apiHostElt.getAttribute('prd');
-                $logProvider.debugEnabled(false);
-                $compile.debugInfoEnabled(false);
+                // these aren't working for now and I just want to deploy.
+                // $logProvider.debugEnabled(false);
+                // $compile.debugInfoEnabled(false);
             } else if (window.location.host === 'dev.partnr-up.com') {
                 apiHost = apiHostElt.getAttribute('dev');
             } else {
