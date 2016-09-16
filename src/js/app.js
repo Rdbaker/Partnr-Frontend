@@ -137,7 +137,7 @@ angular.module('partnr.core', ['ui.router','ngAnimate',
             $rootScope.apiVersion = "v1";
             $rootScope.apiRoute = apiHost + '/api/' + $rootScope.apiVersion + '/';
             $rootScope.apiBase = apiHost + '/api/';
-            $rootScope.version = '1.2.2';
+            $rootScope.version = '1.3.0';
             $rootScope.pollDuration = 10000;
             var bypassAuthCheck = false;
             principal.fetchCsrf();
