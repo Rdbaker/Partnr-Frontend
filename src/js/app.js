@@ -112,8 +112,8 @@ angular.module('partnr.core', ['ui.router','ngAnimate',
     .directive('pnBgImg', require('./shared/bgImgDirective.js'))
     .controller('HomeController', require('./home/homeCtrl'))
     .controller('SharedController', require('./shared/sharedCtrl.js'))
-    .run(['$state', '$rootScope', '$compileProvider', '$logProvider', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
-        function($state, $rootScope, $compileProvider, $logProvider, $window, $location, principal, authorization, skills, $templateCache) {
+    .run(['$state', '$rootScope', '$compile', '$logProvider', '$window', '$location', 'principal', 'authorization', 'skills', '$templateCache',
+        function($state, $rootScope, $compile, $logProvider, $window, $location, principal, authorization, skills, $templateCache) {
 
 
             /**
@@ -126,7 +126,7 @@ angular.module('partnr.core', ['ui.router','ngAnimate',
             if (window.location.host === 'app.partnr-up.com') {
                 apiHost = apiHostElt.getAttribute('prd');
                 $logProvider.debugEnabled(false);
-                $compileProvider.debugInfoEnabled(false);
+                $compile.debugInfoEnabled(false);
             } else if (window.location.host === 'dev.partnr-up.com') {
                 apiHost = apiHostElt.getAttribute('dev');
             } else {
