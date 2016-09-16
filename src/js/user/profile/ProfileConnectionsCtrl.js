@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $state, $stateParams, $log, users) {
+module.exports = ['$scope', '$rootScope', '$state', '$stateParams', '$log', 'users', function($scope, $rootScope, $state, $stateParams, $log, users) {
     $scope.loadComplete = false;
     $scope.user = null;
     $scope.connections = [];
@@ -10,4 +10,4 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, users)
             $scope.loadComplete = true;
         });
     });
-};
+}];

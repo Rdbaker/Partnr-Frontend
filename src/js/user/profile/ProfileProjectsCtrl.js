@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $state, $stateParams, $log, toaster, projects) {
+module.exports = ['$scope', '$rootScope', '$state', '$stateParams', '$log', 'toaster', 'projects', function($scope, $rootScope, $state, $stateParams, $log, toaster, projects) {
     $scope.loadComplete = false;
     $scope.user = null;
     $scope.projects = [];
@@ -11,4 +11,4 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, toaste
             $scope.$broadcast('masonry.reload');
         });
     });
-};
+}];

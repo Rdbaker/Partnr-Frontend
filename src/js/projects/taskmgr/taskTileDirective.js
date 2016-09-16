@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $state, tasks) {
+module.exports = ['$rootScope', '$state', 'tasks', function($rootScope, $state, tasks) {
     return {
         restrict: 'AE',
         templateUrl: '/projects/taskmgr/task_tile.html',
@@ -32,4 +32,4 @@ module.exports = function($rootScope, $state, tasks) {
             };
         }
     };
-};
+}];

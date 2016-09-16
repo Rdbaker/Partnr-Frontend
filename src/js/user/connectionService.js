@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, $log, principal) {
+module.exports = ['$rootScope', '$http', '$log', 'principal', function($rootScope, $http, $log, principal) {
     return {
         getMyConnections: function() {
             return $http({
@@ -69,4 +69,4 @@ module.exports = function($rootScope, $http, $log, principal) {
             });
         }
     };
-};
+}];

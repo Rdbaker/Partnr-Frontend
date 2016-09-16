@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $state, $stateParams, $log, toaster, users) {
+module.exports = ['$scope', '$rootScope', '$state', '$stateParams', '$log', 'toaster', 'users', function($scope, $rootScope, $state, $stateParams, $log, toaster, users) {
     $scope.loadComplete = false;
     $scope.user = null;
     $scope.categorySkillMap = [];
@@ -18,4 +18,4 @@ module.exports = function($scope, $rootScope, $state, $stateParams, $log, toaste
         $log.debug($scope.categorySkillMap);
         $scope.loadComplete = true;
     });
-};
+}];
