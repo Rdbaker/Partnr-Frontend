@@ -54,7 +54,13 @@ require('./user/forgot_password.html');
 require('./user/reset_password.html');
 require('./user/user_card.html');
 
-module.exports = ['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+module.exports = ['$compileProvider', '$logProvider', '$stateProvider', '$urlRouterProvider', function($compileProvider, $logProvider, $stateProvider, $urlRouterProvider) {
+
+    if (window.location.host === 'app.partnr-up.com') {
+      // these aren't working for now and I just want to deploy.
+      $logProvider.debugEnabled(false);
+      $compileProvider.debugInfoEnabled(false);
+    }
 
     $stateProvider
         .state('site', {
