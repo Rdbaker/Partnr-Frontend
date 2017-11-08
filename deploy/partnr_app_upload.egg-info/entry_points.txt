@@ -1,5 +1,0 @@
-[console_scripts]
-deploy = deploy.deploy:upload
-dev_deploy = deploy.dev:upload
-prd_deploy = deploy.prd:upload
-
