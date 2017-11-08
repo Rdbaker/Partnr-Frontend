@@ -1,0 +1,12 @@
+setup.py
+deploy/__init__.py
+deploy/constants.py
+deploy/deploy.py
+deploy/dev.py
+deploy/prd.py
+partnr_app_upload.egg-info/PKG-INFO
+partnr_app_upload.egg-info/SOURCES.txt
+partnr_app_upload.egg-info/dependency_links.txt
+partnr_app_upload.egg-info/entry_points.txt
+partnr_app_upload.egg-info/requires.txt
+partnr_app_upload.egg-info/top_level.txt
